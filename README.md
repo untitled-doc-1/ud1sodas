@@ -1,4 +1,4 @@
-# ud1sodas src repo
+# UD1Sodas Website repository
 ## IMAT2207 Agile Team Development module project
 
 UD1Sodas is an e-commerce site that aims to sell imported soda drinks to the general public.  
