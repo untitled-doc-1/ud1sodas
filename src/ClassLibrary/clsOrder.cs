@@ -10,19 +10,32 @@ namespace ClassLibrary
 {
     public class clsOrder
     {
-#warning implement with class def for stock & inventory (Product Class)
-        public clsOrder(int id, string desc, clsOrder[] prods)
-        {
-            Id = id;
-            Description = desc;
-            Products = prods;
-        }
+        public readonly int ID;
 
 #warning implement with class def for stock & inventory (Product Class)
         private clsOrder[] Products;
+        
+        public readonly string Description;
 
-        public int Id { get; set; }
-        public string Description { get; set; }
+        private readonly int _totalItems;
+
+        private bool _fulfillment_status = false;
+
+        private readonly DateTime _datePlaced;
+
+
+
+#warning implement with class def for stock & inventory (Product Class)
+        public clsOrder(int id, string desc, clsOrder[] prods)
+        {
+            ID = id;
+            Description = desc;
+            Products = prods;
+            _totalItems = prods.Length;
+            _datePlaced = DateTime.Now;
+        }
+
+
         public decimal TotalCost 
         {
             get
@@ -46,6 +59,26 @@ namespace ClassLibrary
 
                 return itemTotals;
             }
+        }
+
+
+
+        public int GetTotalItems()
+        {
+            return _totalItems;
+        }
+
+        
+
+        public DateTime GetDatePlaced()
+        {
+            return _datePlaced;
+        }
+
+
+        public bool GetFulfillment_status()
+        {
+            return _fulfillment_status;
         }
     }
 }
