@@ -25,8 +25,7 @@ public partial class _1_DataEntry : System.Web.UI.Page
         //capture the Employee Name
         AStaff.EmpFullName = txtEmpFullName.Text;
         AStaff.Active = chkActive.Checked;
-        AStaff.JobDescription = txtJobDesc.Text;
-        AStaff.Permissions = txtPermissions.Text;
+        AStaff.JobDescriptionPermissions = txtJobDescPerm.Text;
         //AStaff.EmployeeIDPrimary = Int32.Parse(intEmpID);
         //AStaff.Salary = doubleSalary.Text;
         //AStaff.DateHired = dateTimeHiringDate.Text;
