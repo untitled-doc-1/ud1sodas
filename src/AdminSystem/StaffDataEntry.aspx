@@ -14,7 +14,7 @@
         <asp:TextBox ID="intEmpID" runat="server" OnTextChanged="intEmpID_TextChanged"></asp:TextBox>
         <p>
             <asp:Label ID="lblEmpFullName" runat="server" Text="Employee FullName  " width="250px"></asp:Label>
-            <asp:TextBox ID="txtEmpFullName" runat="server"></asp:TextBox>
+            <asp:TextBox ID="txtEmpFullName" runat="server" OnTextChanged="txtEmpFullName_TextChanged"></asp:TextBox>
         </p>
         <asp:Label ID="lblSalary" runat="server" Text="Salary  " width="250px"></asp:Label>
         <asp:TextBox ID="doubleSalary" runat="server"></asp:TextBox>
