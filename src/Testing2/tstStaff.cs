@@ -82,32 +82,17 @@ namespace Testing2
         }
 
         [TestMethod]
-        public void PermissionsPropertyOK()
+        public void JobDescriptionPermissionsPropertyOK()
         {
             //create an instance of the class
             clsStaff AStaff = new clsStaff();
             //data test
-            String DataTest = "Read Only";
+            String DataTest = "Data Entry / Read Only";
             // assign the datatest for the property
-            AStaff.Permissions = DataTest;
+            AStaff.JobDescriptionPermissions = DataTest;
             // test that both values are the same
-            Assert.AreEqual(AStaff.Permissions, DataTest);
+            Assert.AreEqual(AStaff.JobDescriptionPermissions, DataTest);
         }
-
-        [TestMethod]
-        public void JobDescriptionPropertyOK()
-        {
-            //create an instance of the class
-            clsStaff AStaff = new clsStaff();
-            //data test
-            String DataTest = "Data Entry";
-            // assign the datatest for the property
-            AStaff.JobDescription = DataTest;
-            // test that both values are the same
-            Assert.AreEqual(AStaff.JobDescription, DataTest);
-        }
-
-
 
     }
 }
