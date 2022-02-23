@@ -80,5 +80,34 @@ namespace ClassLibrary
         {
             return _fulfillment_status;
         }
+
+        public void CompleteOrder()
+        {
+            /*
+            foreach (Product prod in this.Products)
+            {
+                if (prod.IsInStock == true)
+                {
+                    if (prod.Quantity <= Stock[prod.ProductID])
+                    {
+                        Stock[prod.ProductID] = -prod.Quantity;
+                        _fulfillment_status = true;
+                    }
+                    else
+                    {
+                        
+                    }
+                }
+                else
+                {
+                    _fulfillment_status = false;
+                }
+            }
+
+            */
+
+            _fulfillment_status = true;
+
+        }
     }
 }

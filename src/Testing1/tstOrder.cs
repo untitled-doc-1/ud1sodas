@@ -31,5 +31,13 @@ namespace Testing1
 
             Assert.AreEqual(aOrder.TotalCost * 2, bOrder.TotalCost);
         }
+
+        [TestMethod]
+        public void FulfilledOrder()
+        {
+            clsOrder aOrder = new clsOrder(0, "Example Order", arr);
+            aOrder.CompleteOrder();
+            Assert.IsTrue(aOrder.GetFulfillment_status());
+        } 
     }
 }
