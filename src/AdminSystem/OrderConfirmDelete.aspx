@@ -9,6 +9,11 @@
 <body>
     <form id="form1" runat="server">
         <div>
+            Order ID to delete:
+            <asp:TextBox ID="TextBox5" runat="server"></asp:TextBox>
+            <br />
+            Click OK to confirm deletion:
+            <asp:Button ID="OKDelete" runat="server" OnClick="Button1_Click" Text="OK!" />
         </div>
     </form>
 </body>
