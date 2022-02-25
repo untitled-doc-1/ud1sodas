@@ -10,6 +10,8 @@ namespace ClassLibrary
 {
     public class clsOrder
     {
+        public static int IDCounter;
+
         public readonly int ID;
 
 #warning implement with class def for stock & inventory (Product Class)
@@ -26,15 +28,25 @@ namespace ClassLibrary
 
 
 #warning implement with class def for stock & inventory (Product Class)
-        public clsOrder(int id, string desc, clsOrder[] prods)
+        public clsOrder(string desc, clsOrder[] prods)
         {
-            ID = id;
+            ID = IDCounter;
             Description = desc;
             Products = prods;
             _totalItems = prods.Length;
             _datePlaced = DateTime.Now;
+            IDCounter++;
         }
 
+        public int GetID()
+        {
+            return ID;
+        }
+
+        public string GetDescription()
+        {
+            return Description;
+        }
 
         public decimal TotalCost 
         {
