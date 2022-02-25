@@ -49,12 +49,28 @@ Fulfilled		Bool
         }
 
         [TestMethod]
+        public void tstOrderTotal()
+        {
+            clsOrder[] arrOrder = new clsOrder[2]
+            {
+                new clsOrder("arrOrder1", arr),
+                new clsOrder("arrOrder2", arr)
+            };
+            clsOrder aOrder = new clsOrder("ExampleOrderLine", arr);
+            clsOrder bOrder = new clsOrder("Example B OrderLine", arrOrder);
+
+            Assert.AreEqual(aOrder.TotalCost * 2, bOrder.TotalCost);
+        }
+
+
+        [TestMethod]
         public void tstDescription()
         {
             clsOrder order1 = new clsOrder("Baked beans, sausages, eggs, tomatoes, bread and bacon", arr);
             string expected = "Baked beans, sausages, eggs, tomatoes, bread and bacon";
             Assert.AreEqual(order1.GetDescription(), expected);
         }
+
 
         [TestMethod]
         public void tstTotalItems()
@@ -69,17 +85,10 @@ Fulfilled		Bool
         }
 
         [TestMethod]
-        public void tstTotalCost()
+        public void tstDatePlaced()
         {
-            clsOrder[] arrOrder = new clsOrder[2]
-            {
-                new clsOrder("arrOrder1", arr),
-                new clsOrder("arrOrder2", arr)
-            };
-            clsOrder aOrder = new clsOrder("ExampleOrderLine", arr);
-            clsOrder bOrder = new clsOrder("Example B OrderLine", arrOrder);
-
-            Assert.AreEqual(aOrder.TotalCost * 2, bOrder.TotalCost);
+            clsOrder order1 = new clsOrder("example clsOrder", arr);
+            Assert.AreEqual(order1.GetDatePlaced().Date, DateTime.Now.Date);
         }
 
         [TestMethod]
@@ -88,13 +97,6 @@ Fulfilled		Bool
             clsOrder aOrder = new clsOrder("Example Order", arr);
             aOrder.CompleteOrder();
             Assert.IsTrue(aOrder.GetFulfillment_status());
-        }
-
-        [TestMethod]
-        public void tstDatePlaced()
-        {
-            clsOrder order1 = new clsOrder("example clsOrder", arr);
-            Assert.AreEqual(order1.GetDatePlaced().Date, DateTime.Now.Date);
         }
     }
 }
