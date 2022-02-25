@@ -9,6 +9,7 @@
 <body>
     <form id="form1" runat="server">
         <div>
+            <asp:Button ID="GoDelete" runat="server" OnClick="GoDelete_Click" Text="Delete Orders..." />
         </div>
     </form>
 </body>
