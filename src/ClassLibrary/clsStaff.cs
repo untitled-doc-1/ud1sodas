@@ -10,5 +10,10 @@ namespace ClassLibrary
         public double Salary { get; set; }
         public string EmpFullName { get; set; }
         public string JobDescriptionPermissions { get; set; }
+
+        public bool Search(int employeeId)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

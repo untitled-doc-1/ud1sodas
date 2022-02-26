@@ -94,5 +94,23 @@ namespace Testing2
             Assert.AreEqual(AStaff.JobDescriptionPermissions, DataTest);
         }
 
+        [TestMethod]
+
+        public void SearchMethodOK()
+        {
+            //creating an instance of the class
+            clsStaff AStaff = new clsStaff();
+            //Boolean variable stored for validation
+            Boolean Found = false;
+            //creating test data for the method
+            Int32 EmployeeId = 1;
+            //invoking the find method
+            Found = AStaff.Search(EmployeeId);
+            //testing the result
+            Assert.IsTrue(Found);
+
+
+        }
+
     }
 }
