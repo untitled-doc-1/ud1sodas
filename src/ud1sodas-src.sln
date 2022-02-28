@@ -1,27 +1,27 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.32126.315
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.32210.238
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "AdminSystem", "AdminSystem\", "{157421EE-9D45-44EB-9290-6574686CB7FC}"
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "WebSite1", "AdminSystem\", "{157421EE-9D45-44EB-9290-6574686CB7FC}"
 	ProjectSection(WebsiteProperties) = preProject
-		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.6.1"
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.7.2"
 		ProjectReferences = "{e32146cf-ec09-4709-9881-42adf1b0735b}|ClassLibrary.dll;"
-		Debug.AspNetCompiler.VirtualPath = "/localhost_50298"
+		Debug.AspNetCompiler.VirtualPath = "/localhost_8080"
 		Debug.AspNetCompiler.PhysicalPath = "AdminSystem\"
-		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_50298\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_8080\"
 		Debug.AspNetCompiler.Updateable = "true"
 		Debug.AspNetCompiler.ForceOverwrite = "true"
 		Debug.AspNetCompiler.FixedNames = "false"
 		Debug.AspNetCompiler.Debug = "True"
-		Release.AspNetCompiler.VirtualPath = "/localhost_50298"
+		Release.AspNetCompiler.VirtualPath = "/localhost_8080"
 		Release.AspNetCompiler.PhysicalPath = "AdminSystem\"
-		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_50298\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_8080\"
 		Release.AspNetCompiler.Updateable = "true"
 		Release.AspNetCompiler.ForceOverwrite = "true"
 		Release.AspNetCompiler.FixedNames = "false"
 		Release.AspNetCompiler.Debug = "False"
-		VWDPort = "50298"
+		VWDPort = "8080"
 		SlnRelativePath = "AdminSystem\"
 	EndProjectSection
 EndProject
