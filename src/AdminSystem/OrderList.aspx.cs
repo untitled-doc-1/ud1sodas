@@ -11,4 +11,9 @@ public partial class _1_List : System.Web.UI.Page
     {
 
     }
+
+    protected void btnDelete_Click(object sender, EventArgs e)
+    {
+
+    }
 }
