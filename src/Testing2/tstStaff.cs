@@ -96,7 +96,7 @@ namespace Testing2
 
         [TestMethod]
 
-        public void SearchMethodOK()
+        public void FindMethodOK()
         {
             //creating an instance of the class
             clsStaff AStaff = new clsStaff();
@@ -105,12 +105,56 @@ namespace Testing2
             //creating test data for the method
             Int32 EmployeeId = 1;
             //invoking the find method
-            Found = AStaff.Search(EmployeeId);
+            Found = AStaff.Find(EmployeeId);
             //testing the result
             Assert.IsTrue(Found);
 
 
         }
 
+        [TestMethod]
+        public void testEmplyeeIdFound()
+        {
+            //creating an instance of the class
+            clsStaff AStaff = new clsStaff();
+            //boolean variable to store the result of the search
+            Boolean Found = false;
+            //boolean variable to record if the value is okay (assume it is)
+            Boolean OK = true;
+            //creat some test data to use with the method
+            Int32 EmployeeId = 2;
+            //invoke the method
+            Found = AStaff.Find(EmployeeId);
+            //check the EmployeeId
+            if (AStaff.EmployeeIDPrimary != 2)
+            {
+                OK = false;
+            }
+            //test to see that the result is correct
+            Assert.IsTrue(OK);
+
+        }
+
+        [TestMethod]
+        public void TestDateHiredFound()
+        {
+            //create an instance od the class
+            clsStaff AStaff = new clsStaff();
+            //boolean variable to store the result of the search
+            Boolean Found = false;
+            //boolean variable to record if the data is okay
+            Boolean OK = true;
+            //creat some test data
+            Int32 EmployeeId = 2;
+            //invoke the method
+            Found = AStaff.Find(EmployeeId);
+            //check the property
+            if (AStaff.DateHired != Convert.ToDateTime("16/09/2015"))
+            {
+                OK = false;
+            }
+            //test to see that the result is correct
+            Assert.IsTrue(OK);
+        }
     }
 }

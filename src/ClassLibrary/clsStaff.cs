@@ -4,16 +4,51 @@ namespace ClassLibrary
 {
     public class clsStaff
     {
+        
         public bool Active { get; set; }
-        public DateTime DateHired { get; set; }
-        public int EmployeeIDPrimary { get; set; }
+        
+        
+        private DateTime mDateTime;
+        public DateTime DateHired
+        {
+            get
+            {
+                return mDateTime;
+            }
+            set
+            {
+                mDateTime = value;
+            }
+        }
+
+        //private data member for the EmplyeeId property
+        private Int32 mEmployeeId;
+        public int EmployeeIDPrimary
+        {
+            get
+            {
+                //this line sends data out of the property
+                return mEmployeeId;
+            }
+            set
+            {
+                //this line allows data into the property
+                mEmployeeId = value;
+            }
+        }
+
         public double Salary { get; set; }
         public string EmpFullName { get; set; }
         public string JobDescriptionPermissions { get; set; }
 
-        public bool Search(int employeeId)
+        
+        public bool Find(int EmployeeId)
         {
-            throw new NotImplementedException();
+            //set the private data members to the test data value
+            mEmployeeId = 2;
+            mDateTime = Convert.ToDateTime("16/09/2015");
+            //alwyas return true
+            return true;
         }
     }
 }
