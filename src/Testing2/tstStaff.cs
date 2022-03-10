@@ -103,9 +103,9 @@ namespace Testing2
             //Boolean variable stored for validation
             Boolean Found = false;
             //creating test data for the method
-            Int32 EmployeeId = 1;
+            Int32 EmployeeIDPrimary = 1;
             //invoking the find method
-            Found = AStaff.Find(EmployeeId);
+            Found = AStaff.Find(EmployeeIDPrimary);
             //testing the result
             Assert.IsTrue(Found);
 
@@ -113,7 +113,7 @@ namespace Testing2
         }
 
         [TestMethod]
-        public void testEmplyeeIdFound()
+        public void TestEmplyeeIdFound()
         {
             //creating an instance of the class
             clsStaff AStaff = new clsStaff();
@@ -122,9 +122,9 @@ namespace Testing2
             //boolean variable to record if the value is okay (assume it is)
             Boolean OK = true;
             //creat some test data to use with the method
-            Int32 EmployeeId = 2;
+            Int32 EmployeeIDPrimary = 2;
             //invoke the method
-            Found = AStaff.Find(EmployeeId);
+            Found = AStaff.Find(EmployeeIDPrimary);
             //check the EmployeeId
             if (AStaff.EmployeeIDPrimary != 2)
             {
@@ -133,6 +133,28 @@ namespace Testing2
             //test to see that the result is correct
             Assert.IsTrue(OK);
 
+        }
+
+        [TestMethod]
+        public void TestActiveFound()
+        {
+            //create an instance od the class
+            clsStaff AStaff = new clsStaff();
+            //boolean variable to store the result of the search
+            Boolean Found = false;
+            //boolean variable to record if the data is okay
+            Boolean OK = true;
+            //creat some test data
+            Int32 EmployeeIDPrimary = 2;
+            //invoke the method
+            Found = AStaff.Find(EmployeeIDPrimary);
+            //check the property
+            if (AStaff.Active != true)
+            {
+                OK = false;
+            }
+            //test to see that the result is correct
+            Assert.IsTrue(OK);
         }
 
         [TestMethod]
@@ -145,16 +167,87 @@ namespace Testing2
             //boolean variable to record if the data is okay
             Boolean OK = true;
             //creat some test data
-            Int32 EmployeeId = 2;
+            Int32 EmployeeIDPrimary = 2;
             //invoke the method
-            Found = AStaff.Find(EmployeeId);
+            Found = AStaff.Find(EmployeeIDPrimary);
             //check the property
-            if (AStaff.DateHired != Convert.ToDateTime("16/09/2015"))
+            if (AStaff.DateHired != Convert.ToDateTime("16 / 9 / 2015"))
             {
                 OK = false;
             }
             //test to see that the result is correct
             Assert.IsTrue(OK);
         }
+
+        [TestMethod]
+        public void TestSalaryFound()
+        {
+            //creating an instance of the class
+            clsStaff AStaff = new clsStaff();
+            //boolean variable to store the result of the search
+            Boolean Found = false;
+            //boolean variable to record if the value is okay (assume it is)
+            Boolean OK = true;
+            //creat some test data to use with the method
+            Int32 EmployeeIDPrimary = 2;
+            //invoke the method
+            Found = AStaff.Find(EmployeeIDPrimary);
+            //check the EmployeeId
+            if (AStaff.Salary != 0)
+            {
+                OK = false;
+            }
+            //test to see that the result is correct
+            Assert.IsTrue(OK);
+
+        }
+
+        [TestMethod]
+        public void TestEmpFullNameFound()
+        {
+            //creating an instance of the class
+            clsStaff AStaff = new clsStaff();
+            //boolean variable to store the result of the search
+            Boolean Found = false;
+            //boolean variable to record if the value is okay (assume it is)
+            Boolean OK = true;
+            //creat some test data to use with the method
+            Int32 EmployeeIDPrimary = 2;
+            //invoke the method
+            Found = AStaff.Find(EmployeeIDPrimary);
+            //check the EmployeeId
+            if (AStaff.EmpFullName != "")
+            {
+                OK = false;
+            }
+            //test to see that the result is correct
+            Assert.IsTrue(OK);
+
+        }
+
+        [TestMethod]
+        public void TestJobDescriptionPermissionsFound()
+        {
+            //creating an instance of the class
+            clsStaff AStaff = new clsStaff();
+            //boolean variable to store the result of the search
+            Boolean Found = false;
+            //boolean variable to record if the value is okay (assume it is)
+            Boolean OK = true;
+            //creat some test data to use with the method
+            Int32 EmployeeIDPrimary = 2;
+            //invoke the method
+            Found = AStaff.Find(EmployeeIDPrimary);
+            //check the EmployeeId
+            if (AStaff.JobDescriptionPermissions != "")
+            {
+                OK = false;
+            }
+            //test to see that the result is correct
+            Assert.IsTrue(OK);
+
+        }
+
+
     }
 }

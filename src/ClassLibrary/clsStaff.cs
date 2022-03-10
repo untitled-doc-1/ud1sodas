@@ -1,54 +1,133 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
 
 namespace ClassLibrary
 {
     public class clsStaff
     {
+        //fields
+        private Boolean mActive;
+        private DateTime mDateHired;
+        private Int32 mEmployeeIDPrimary;
+        private double mSalary;
+        private String mEmpFullName;
+        private String mJobDescriptionPermissions;
+
+
+        //methods
+        public bool Active
+        {
+            get
+            {
+                //returns private field mActive
+                return mActive;
+            }
+
+            set
+            {
+                //sets private field mActive
+                mActive = value;
+            }
+        }
         
-        public bool Active { get; set; }
-        
-        
-        private DateTime mDateTime;
         public DateTime DateHired
         {
             get
             {
-                return mDateTime;
+                //returns the data out of the property
+                return mDateHired;
             }
             set
             {
-                mDateTime = value;
+                //allows data into the property, set.
+                mDateHired = value;
             }
         }
-
-        //private data member for the EmplyeeId property
-        private Int32 mEmployeeId;
+        
         public int EmployeeIDPrimary
         {
             get
             {
                 //this line sends data out of the property
-                return mEmployeeId;
+                return mEmployeeIDPrimary;
             }
             set
             {
                 //this line allows data into the property
-                mEmployeeId = value;
+                mEmployeeIDPrimary = value;
             }
         }
 
-        public double Salary { get; set; }
-        public string EmpFullName { get; set; }
-        public string JobDescriptionPermissions { get; set; }
-
-        
-        public bool Find(int EmployeeId)
+        public double Salary 
         {
-            //set the private data members to the test data value
-            mEmployeeId = 2;
-            mDateTime = Convert.ToDateTime("16/09/2015");
-            //alwyas return true
-            return true;
+            get 
+            {
+                //returns private field mSalary
+                return mSalary;
+            }
+            set 
+            {
+                //set the value of private field mSalary
+                mSalary = value;
+            }
+         }
+
+        public string EmpFullName
+        {
+            get
+            {
+                //returns private field mEmpFullName
+                return mEmpFullName;
+            }
+            set
+            {
+                //set the value of private field mEmpFullName
+                mEmpFullName = value;
+            }
+        }
+        public string JobDescriptionPermissions
+        {
+            get
+            {
+                //returns private field mJobDescriptionPermissions
+                return mJobDescriptionPermissions;
+            }
+            set
+            {
+                //set the value of private field mJobDescriptionPermissions
+                mJobDescriptionPermissions = value;
+            }
+        }
+
+        public bool Find(int EmployeeIDPrimary)
+        {
+            //creat an instance of the database connection
+            clsDataConnection DB = new clsDataConnection();
+            //adding the parameter for EmplyeeId to search for
+            DB.AddParameter("@EmployeeIDPrimary", EmployeeIDPrimary);
+            //execute the stored procedure
+            DB.Execute("sproc_tblStaff_FilterByEmployeeId");
+            //if one record is found (there should be either one or zero)
+            if (DB.count == 1)
+            {
+                mActive = Convert.ToBoolean(DB.DataTable.Rows[0]["Active"]);
+                mEmployeeIDPrimary = Convert.ToInt32(DB.DataTable.Rows[0]["EmployeeIDPrimary"]);
+                mDateHired = Convert.ToDateTime(DB.DataTable.Rows[0]["DateHired"]);
+                mSalary = Convert.ToDouble(DB.DataTable.Rows[0]["Salary"]);
+                mEmpFullName = Convert.ToString(DB.DataTable.Rows[0]["EmpFullName"]);
+                mJobDescriptionPermissions = Convert.ToString(DB.DataTable.Rows[0]["JobDescriptionPermissions"]);
+                //return that everything worked ok
+                return true;
+            }
+            //else if record is not found
+            else
+            {
+                //return false indicating an issue
+                return false;
+            }
         }
     }
 }
