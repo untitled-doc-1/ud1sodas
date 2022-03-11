@@ -121,5 +121,18 @@ namespace ClassLibrary
             _fulfillment_status = true;
 
         }
+
+        public void DeleteOrder(int ID)
+        {
+            var server = "v00egd00001l.lec-admin.dmu.ac.uk";
+            string db = "p2612742";
+            string user = "p2612742";
+            string pass = "Untitled5";
+
+            string connectionString = "Data Source=" + server + "; Initial Catalog = " + db + "; User ID = " + user + "; Password = " + pass;
+
+
+            System.Data.SqlClient.SqlConnection SQLC = new System.Data.SqlClient.SqlConnection(connectionString);
+        }
     }
 }
