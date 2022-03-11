@@ -122,11 +122,11 @@ namespace Testing2
             //boolean variable to record if the value is okay (assume it is)
             Boolean OK = true;
             //creat some test data to use with the method
-            Int32 EmployeeIDPrimary = 2;
+            Int32 EmployeeIDPrimary = 1;
             //invoke the method
             Found = AStaff.Find(EmployeeIDPrimary);
             //check the EmployeeId
-            if (AStaff.EmployeeIDPrimary != 2)
+            if (AStaff.EmployeeIDPrimary != 1)
             {
                 OK = false;
             }
@@ -145,7 +145,7 @@ namespace Testing2
             //boolean variable to record if the data is okay
             Boolean OK = true;
             //creat some test data
-            Int32 EmployeeIDPrimary = 2;
+            Int32 EmployeeIDPrimary = 1;
             //invoke the method
             Found = AStaff.Find(EmployeeIDPrimary);
             //check the property
@@ -167,11 +167,11 @@ namespace Testing2
             //boolean variable to record if the data is okay
             Boolean OK = true;
             //creat some test data
-            Int32 EmployeeIDPrimary = 2;
+            Int32 EmployeeIDPrimary = 1;
             //invoke the method
             Found = AStaff.Find(EmployeeIDPrimary);
             //check the property
-            if (AStaff.DateHired != Convert.ToDateTime("16 / 9 / 2015"))
+            if (AStaff.DateHired != Convert.ToDateTime("01 / 01 / 2013"))
             {
                 OK = false;
             }
@@ -189,7 +189,7 @@ namespace Testing2
             //boolean variable to record if the value is okay (assume it is)
             Boolean OK = true;
             //creat some test data to use with the method
-            Int32 EmployeeIDPrimary = 2;
+            Int32 EmployeeIDPrimary = 1;
             //invoke the method
             Found = AStaff.Find(EmployeeIDPrimary);
             //check the EmployeeId
@@ -212,11 +212,11 @@ namespace Testing2
             //boolean variable to record if the value is okay (assume it is)
             Boolean OK = true;
             //creat some test data to use with the method
-            Int32 EmployeeIDPrimary = 2;
+            Int32 EmployeeIDPrimary = 1;
             //invoke the method
             Found = AStaff.Find(EmployeeIDPrimary);
             //check the EmployeeId
-            if (AStaff.EmpFullName != "")
+            if (AStaff.EmpFullName != "Edward Morra")
             {
                 OK = false;
             }
@@ -235,11 +235,11 @@ namespace Testing2
             //boolean variable to record if the value is okay (assume it is)
             Boolean OK = true;
             //creat some test data to use with the method
-            Int32 EmployeeIDPrimary = 2;
+            Int32 EmployeeIDPrimary = 1;
             //invoke the method
             Found = AStaff.Find(EmployeeIDPrimary);
             //check the EmployeeId
-            if (AStaff.JobDescriptionPermissions != "")
+            if (AStaff.JobDescriptionPermissions != "Owner & Marketing/Full")
             {
                 OK = false;
             }

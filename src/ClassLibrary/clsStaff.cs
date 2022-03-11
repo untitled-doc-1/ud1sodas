@@ -111,14 +111,14 @@ namespace ClassLibrary
             //execute the stored procedure
             DB.Execute("sproc_tblStaff_FilterByEmployeeId");
             //if one record is found (there should be either one or zero)
-            if (DB.count == 1)
+            if (DB.Count == 1)
             {
-                mActive = Convert.ToBoolean(DB.DataTable.Rows[0]["Active"]);
-                mEmployeeIDPrimary = Convert.ToInt32(DB.DataTable.Rows[0]["EmployeeIDPrimary"]);
+                mActive = Convert.ToBoolean(DB.DataTable.Rows[0]["Hired/Resigned"]);
+                mEmployeeIDPrimary = Convert.ToInt32(DB.DataTable.Rows[0]["EmployeeId"]);
                 mDateHired = Convert.ToDateTime(DB.DataTable.Rows[0]["DateHired"]);
                 mSalary = Convert.ToDouble(DB.DataTable.Rows[0]["Salary"]);
                 mEmpFullName = Convert.ToString(DB.DataTable.Rows[0]["EmpFullName"]);
-                mJobDescriptionPermissions = Convert.ToString(DB.DataTable.Rows[0]["JobDescriptionPermissions"]);
+                mJobDescriptionPermissions = Convert.ToString(DB.DataTable.Rows[0]["JobDescription/Permissions"]);
                 //return that everything worked ok
                 return true;
             }
