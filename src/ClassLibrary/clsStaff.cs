@@ -109,16 +109,16 @@ namespace ClassLibrary
             //adding the parameter for EmplyeeId to search for
             DB.AddParameter("@EmployeeId", EmployeeId);
             //execute the stored procedure
-            DB.Execute("sproc_tblStaff_SelectAll");
+            DB.Execute("sproc_tblStaff_FilterByEmployeeId");
             //if one record is found (there should be either one or zero)
             if (DB.Count == 1)
             {
-                mActive = Convert.ToBoolean(DB.DataTable.Rows[0]["Active"]);
                 mEmployeeId = Convert.ToInt32(DB.DataTable.Rows[0]["EmployeeId"]);
-                mDateHired = Convert.ToDateTime(DB.DataTable.Rows[0]["DateHired"]);
-                mSalary = Convert.ToDouble(DB.DataTable.Rows[0]["Salary"]);
                 mEmpFullName = Convert.ToString(DB.DataTable.Rows[0]["EmpFullName"]);
+                mSalary = Convert.ToDouble(DB.DataTable.Rows[0]["Salary"]);
+                mDateHired = Convert.ToDateTime(DB.DataTable.Rows[0]["DateHired"]);
                 mJobDescriptionPermissions = Convert.ToString(DB.DataTable.Rows[0]["JobDescriptionPermissions"]);
+                mActive = Convert.ToBoolean(DB.DataTable.Rows[0]["Active"]);
                 //return that everything worked ok
                 return true;
             }
