@@ -43,16 +43,16 @@ namespace Testing2
         }
 
         [TestMethod]
-        public void EmployeeIDPrimaryPropertyOK()
+        public void EmployeeIdPropertyOK()
         {
             //create an instance of the class
             clsStaff AStaff = new clsStaff();
             //data test
             Int32 DataTest = 1;
             // assign the datatest for the property
-            AStaff.EmployeeIDPrimary = DataTest;
+            AStaff.EmployeeId = DataTest;
             // test that both values are the same
-            Assert.AreEqual(AStaff.EmployeeIDPrimary, DataTest);
+            Assert.AreEqual(AStaff.EmployeeId, DataTest);
         }
 
         [TestMethod]
@@ -103,9 +103,9 @@ namespace Testing2
             //Boolean variable stored for validation
             Boolean Found = false;
             //creating test data for the method
-            Int32 EmployeeIDPrimary = 1;
+            Int32 EmployeeId = 1;
             //invoking the find method
-            Found = AStaff.Find(EmployeeIDPrimary);
+            Found = AStaff.Find(EmployeeId);
             //testing the result
             Assert.IsTrue(Found);
 
@@ -122,11 +122,11 @@ namespace Testing2
             //boolean variable to record if the value is okay (assume it is)
             Boolean OK = true;
             //creat some test data to use with the method
-            Int32 EmployeeIDPrimary = 1;
+            Int32 EmployeeId = 1;
             //invoke the method
-            Found = AStaff.Find(EmployeeIDPrimary);
+            Found = AStaff.Find(EmployeeId);
             //check the EmployeeId
-            if (AStaff.EmployeeIDPrimary != 1)
+            if (AStaff.EmployeeId != 1)
             {
                 OK = false;
             }
@@ -145,9 +145,9 @@ namespace Testing2
             //boolean variable to record if the data is okay
             Boolean OK = true;
             //creat some test data
-            Int32 EmployeeIDPrimary = 1;
+            Int32 EmployeeId = 1;
             //invoke the method
-            Found = AStaff.Find(EmployeeIDPrimary);
+            Found = AStaff.Find(EmployeeId);
             //check the property
             if (AStaff.Active != true)
             {
@@ -167,11 +167,11 @@ namespace Testing2
             //boolean variable to record if the data is okay
             Boolean OK = true;
             //creat some test data
-            Int32 EmployeeIDPrimary = 1;
+            Int32 EmployeeId = 1;
             //invoke the method
-            Found = AStaff.Find(EmployeeIDPrimary);
+            Found = AStaff.Find(EmployeeId);
             //check the property
-            if (AStaff.DateHired != Convert.ToDateTime("01 / 01 / 2013"))
+            if (AStaff.DateHired != Convert.ToDateTime("1/1/2013"))
             {
                 OK = false;
             }
@@ -189,9 +189,9 @@ namespace Testing2
             //boolean variable to record if the value is okay (assume it is)
             Boolean OK = true;
             //creat some test data to use with the method
-            Int32 EmployeeIDPrimary = 1;
+            Int32 EmployeeId = 1;
             //invoke the method
-            Found = AStaff.Find(EmployeeIDPrimary);
+            Found = AStaff.Find(EmployeeId);
             //check the EmployeeId
             if (AStaff.Salary != 0)
             {
@@ -212,9 +212,9 @@ namespace Testing2
             //boolean variable to record if the value is okay (assume it is)
             Boolean OK = true;
             //creat some test data to use with the method
-            Int32 EmployeeIDPrimary = 1;
+            Int32 EmployeeId = 1;
             //invoke the method
-            Found = AStaff.Find(EmployeeIDPrimary);
+            Found = AStaff.Find(EmployeeId);
             //check the EmployeeId
             if (AStaff.EmpFullName != "Edward Morra")
             {
@@ -235,11 +235,11 @@ namespace Testing2
             //boolean variable to record if the value is okay (assume it is)
             Boolean OK = true;
             //creat some test data to use with the method
-            Int32 EmployeeIDPrimary = 1;
+            Int32 EmployeeId = 1;
             //invoke the method
-            Found = AStaff.Find(EmployeeIDPrimary);
+            Found = AStaff.Find(EmployeeId);
             //check the EmployeeId
-            if (AStaff.JobDescriptionPermissions != "Owner & Marketing/Full")
+            if (AStaff.JobDescriptionPermissions != "Owner")
             {
                 OK = false;
             }

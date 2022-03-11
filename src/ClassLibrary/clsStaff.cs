@@ -11,7 +11,7 @@ namespace ClassLibrary
         //fields
         private Boolean mActive;
         private DateTime mDateHired;
-        private Int32 mEmployeeIDPrimary;
+        private Int32 mEmployeeId;
         private double mSalary;
         private String mEmpFullName;
         private String mJobDescriptionPermissions;
@@ -47,17 +47,17 @@ namespace ClassLibrary
             }
         }
         
-        public int EmployeeIDPrimary
+        public int EmployeeId
         {
             get
             {
                 //this line sends data out of the property
-                return mEmployeeIDPrimary;
+                return mEmployeeId;
             }
             set
             {
                 //this line allows data into the property
-                mEmployeeIDPrimary = value;
+                mEmployeeId = value;
             }
         }
 
@@ -102,23 +102,23 @@ namespace ClassLibrary
             }
         }
 
-        public bool Find(int EmployeeIDPrimary)
+        public bool Find(int EmployeeId)
         {
             //creat an instance of the database connection
             clsDataConnection DB = new clsDataConnection();
             //adding the parameter for EmplyeeId to search for
-            DB.AddParameter("@EmployeeIDPrimary", EmployeeIDPrimary);
+            DB.AddParameter("@EmployeeId", EmployeeId);
             //execute the stored procedure
-            DB.Execute("sproc_tblStaff_FilterByEmployeeId");
+            DB.Execute("sproc_tblStaff_SelectAll");
             //if one record is found (there should be either one or zero)
             if (DB.Count == 1)
             {
-                mActive = Convert.ToBoolean(DB.DataTable.Rows[0]["Hired/Resigned"]);
-                mEmployeeIDPrimary = Convert.ToInt32(DB.DataTable.Rows[0]["EmployeeId"]);
+                mActive = Convert.ToBoolean(DB.DataTable.Rows[0]["Active"]);
+                mEmployeeId = Convert.ToInt32(DB.DataTable.Rows[0]["EmployeeId"]);
                 mDateHired = Convert.ToDateTime(DB.DataTable.Rows[0]["DateHired"]);
                 mSalary = Convert.ToDouble(DB.DataTable.Rows[0]["Salary"]);
                 mEmpFullName = Convert.ToString(DB.DataTable.Rows[0]["EmpFullName"]);
-                mJobDescriptionPermissions = Convert.ToString(DB.DataTable.Rows[0]["JobDescription/Permissions"]);
+                mJobDescriptionPermissions = Convert.ToString(DB.DataTable.Rows[0]["JobDescriptionPermissions"]);
                 //return that everything worked ok
                 return true;
             }

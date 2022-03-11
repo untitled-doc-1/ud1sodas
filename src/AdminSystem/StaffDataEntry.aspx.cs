@@ -29,7 +29,7 @@ public partial class _1_DataEntry : System.Web.UI.Page
             AStaff.EmpFullName = txtEmpFullName.Text;
             AStaff.Active = chkActive.Checked;
             AStaff.JobDescriptionPermissions = txtJobDescPerm.Text;
-            AStaff.EmployeeIDPrimary = Int32.Parse(intEmpID.Text);
+            AStaff.EmployeeId = Int32.Parse(intEmpID.Text);
             AStaff.Salary = Double.Parse(doubleSalary.Text);
             AStaff.DateHired = DateTime.Parse(dateTimeHiringDate.Text);
         } catch (Exception ex)

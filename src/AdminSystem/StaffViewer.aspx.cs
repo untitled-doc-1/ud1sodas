@@ -21,7 +21,7 @@ public partial class _1Viewer : System.Web.UI.Page
         //display Job Description and Permissions
         Response.Write(AStaff.JobDescriptionPermissions + "<br />");
         //display employee Id
-        Response.Write(AStaff.EmployeeIDPrimary + "<br />");
+        Response.Write(AStaff.EmployeeId + "<br />");
         //display Staff date of hiring
         Response.Write(AStaff.DateHired + "<br />");
         //display staff salary
