@@ -10,6 +10,8 @@ namespace ClassLibrary
 {
     public class clsOrder
     {
+        public static int IDCounter;
+
         public readonly int ID;
 
 #warning implement with class def for stock & inventory (Product Class)
@@ -26,15 +28,25 @@ namespace ClassLibrary
 
 
 #warning implement with class def for stock & inventory (Product Class)
-        public clsOrder(int id, string desc, clsOrder[] prods)
+        public clsOrder(string desc, clsOrder[] prods)
         {
-            ID = id;
+            ID = IDCounter;
             Description = desc;
             Products = prods;
             _totalItems = prods.Length;
             _datePlaced = DateTime.Now;
+            IDCounter++;
         }
 
+        public int GetID()
+        {
+            return ID;
+        }
+
+        public string GetDescription()
+        {
+            return Description;
+        }
 
         public decimal TotalCost 
         {
@@ -79,6 +91,48 @@ namespace ClassLibrary
         public bool GetFulfillment_status()
         {
             return _fulfillment_status;
+        }
+
+        public void CompleteOrder()
+        {
+            /*
+            foreach (Product prod in this.Products)
+            {
+                if (prod.IsInStock == true)
+                {
+                    if (prod.Quantity <= Stock[prod.ProductID])
+                    {
+                        Stock[prod.ProductID] = -prod.Quantity;
+                        _fulfillment_status = true;
+                    }
+                    else
+                    {
+                        
+                    }
+                }
+                else
+                {
+                    _fulfillment_status = false;
+                }
+            }
+
+            */
+
+            _fulfillment_status = true;
+
+        }
+
+        public void DeleteOrder(int ID)
+        {
+            var server = "v00egd00001l.lec-admin.dmu.ac.uk";
+            string db = "p2612742";
+            string user = "p2612742";
+            string pass = "Untitled5";
+
+            string connectionString = "Data Source=" + server + "; Initial Catalog = " + db + "; User ID = " + user + "; Password = " + pass;
+
+
+            System.Data.SqlClient.SqlConnection SQLC = new System.Data.SqlClient.SqlConnection(connectionString);
         }
     }
 }

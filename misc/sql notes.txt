@@ -1,0 +1,32 @@
+CREATE TABLE [dbo].[tblOrder] (
+    [Id]          INT          IDENTITY(1, 1)	NOT NULL,
+    [OrderTotal]  DECIMAL (18) NOT NULL,
+    [Description] VARCHAR (50) NOT NULL,
+    [TotalItems]  INT          NOT NULL,
+    [DatePlaced]  DATE         NOT NULL,
+    [Fulfilment]  BIT          NOT NULL,
+    PRIMARY KEY CLUSTERED ([Id] ASC)
+);
+
+CREATE PROCEDURE sproc_Order_Insert
+	@param1 IDENTITY,
+	@param2 int,
+	@param3 varchar,
+	@param4 int
+AS
+	INSERT INTO tblOrder VALUES (@param1, @param2, @param3, GETDATE(), @param4)
+RETURN 0
+
+
+CREATE PROCEDURE sproc_Order_SelectAll
+AS
+--select all the records from the table
+	SELECT * from tblOrder
+RETURN 0
+
+CREATE PROCEDURE sproc_Order_InsertGeneric
+AS
+--select all the records from the table
+	INSERT INTO tblOrder VALUES (0, 5, 'Example', 5, GETDATE(), 0)
+	INSERT INTO tblOrder VALUES (1, 5, 'Example2', 5, GETDATE(), 0)
+RETURN 0

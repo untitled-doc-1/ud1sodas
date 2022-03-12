@@ -11,4 +11,29 @@ public partial class _1_List : System.Web.UI.Page
     {
 
     }
+
+    protected void btnDelete_Click(object sender, EventArgs e)
+    {
+
+    }
+
+    protected void btn_order_del_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("OrderConfirmDelete.aspx");
+    }
+
+    protected void btn_order_add_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("OrderDataEntry.aspx");
+    }
+
+    protected void btn_order_list_Click(object sender, EventArgs e)
+    {
+        
+    }
+
+    protected void btn_order_view_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("OrderViewer.aspx");
+    }
 }

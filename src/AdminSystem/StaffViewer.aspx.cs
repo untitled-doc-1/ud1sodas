@@ -14,18 +14,18 @@ public partial class _1Viewer : System.Web.UI.Page
         clsStaff AStaff = new clsStaff();
         //get the data from the session object
         AStaff = (clsStaff)Session["AStaff"];
-        //display employee name for this entry
-        Response.Write(AStaff.EmpFullName + "<br />");
-        //display Active status
-        Response.Write(AStaff.Active + "<br />");
-        //display Job Description and Permissions
-        Response.Write(AStaff.JobDescriptionPermissions + "<br />");
         //display employee Id
-        Response.Write(AStaff.EmployeeIDPrimary + "<br />");
-        //display Staff date of hiring
-        Response.Write(AStaff.DateHired + "<br />");
+        Response.Write("EmployeeID = " + AStaff.EmployeeId + "<br />");
+        //display employee name for this entry
+        Response.Write("Employee FullName = " + AStaff.EmpFullName + "<br />");
         //display staff salary
-        Response.Write(AStaff.Salary + "<br />");
+        Response.Write("Salary = " + AStaff.Salary + "<br />");
+        //display Job Description and Permissions
+        Response.Write("Job Description & Permissions = " + AStaff.JobDescriptionPermissions + "<br />");
+        //display Staff date of hiring
+        Response.Write("Date Hired = " + AStaff.DateHired + "<br />");
+        //display Active status
+        Response.Write("Still Active = " + AStaff.Active + "<br />");
 
     }
 }
