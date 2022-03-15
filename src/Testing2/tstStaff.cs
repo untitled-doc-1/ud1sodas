@@ -549,7 +549,7 @@ namespace Testing2
             string DateHired = TestData.ToString();
             //invoke the method
             Error = AStaff.Valid(EmpFullName, Salary, JobDescriptionPermissions, DateHired);
-            Assert.AreNotEqual(Error, "");
+            Assert.AreEqual(Error, "");
         }
 
         [TestMethod]
@@ -601,6 +601,144 @@ namespace Testing2
             String Error = "";
             //Create some test data to pass to the method
             string DateHired = "this is not a date";
+            //invoke the method
+            Error = AStaff.Valid(EmpFullName, Salary, JobDescriptionPermissions, DateHired);
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void SalaryExtremeMin()
+        {
+            //creating an instance of the class
+            clsStaff AStaff = new clsStaff();
+            //String Variable to hold the error message
+            String Error = "";
+            //Create some test data to pass to the method
+            string Salary = (-100).ToString();
+            //invoke the method
+            Error = AStaff.Valid(EmpFullName, Salary, JobDescriptionPermissions, DateHired);
+            Assert.AreNotEqual(Error, "");
+        }
+        [TestMethod]
+        public void SalaryMinLessOne()
+        {
+            //creating an instance of the class
+            clsStaff AStaff = new clsStaff();
+            //String Variable to hold the error message
+            String Error = "";
+            //Create some test data to pass to the method
+            string Salary = (-1).ToString() ;
+            //invoke the method
+            Error = AStaff.Valid(EmpFullName, Salary, JobDescriptionPermissions, DateHired);
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void SalaryMin()
+        {
+            //creating an instance of the class
+            clsStaff AStaff = new clsStaff();
+            //String Variable to hold the error message
+            String Error = "";
+            //Create some test data to pass to the method
+            string Salary = (0).ToString();
+            //invoke the method
+            Error = AStaff.Valid(EmpFullName, Salary, JobDescriptionPermissions, DateHired);
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void SalaryMinPlusOne()
+        {
+            //creating an instance of the class
+            clsStaff AStaff = new clsStaff();
+            //String Variable to hold the error message
+            String Error = "";
+            //Create some test data to pass to the method
+            string Salary = (1).ToString();
+            //invoke the method
+            Error = AStaff.Valid(EmpFullName, Salary, JobDescriptionPermissions, DateHired);
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void SalaryMaxLessOne()
+        {
+            //creating an instance of the class
+            clsStaff AStaff = new clsStaff();
+            //String Variable to hold the error message
+            String Error = "";
+            //Create some test data to pass to the method
+            string Salary = (49999).ToString();
+            //invoke the method
+            Error = AStaff.Valid(EmpFullName, Salary, JobDescriptionPermissions, DateHired);
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void SalaryMax()
+        {
+            //creating an instance of the class
+            clsStaff AStaff = new clsStaff();
+            //String Variable to hold the error message
+            String Error = "";
+            //Create some test data to pass to the method
+            string Salary = (50000).ToString();
+            //invoke the method
+            Error = AStaff.Valid(EmpFullName, Salary, JobDescriptionPermissions, DateHired);
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void SalaryMid()
+        {
+            //creating an instance of the class
+            clsStaff AStaff = new clsStaff();
+            //String Variable to hold the error message
+            String Error = "";
+            //Create some test data to pass to the method
+            string Salary = (25000).ToString();
+            //invoke the method
+            Error = AStaff.Valid(EmpFullName, Salary, JobDescriptionPermissions, DateHired);
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void SalaryMaxPlusOne()
+        {
+            //creating an instance of the class
+            clsStaff AStaff = new clsStaff();
+            //String Variable to hold the error message
+            String Error = "";
+            //Create some test data to pass to the method
+            string Salary = (50001).ToString();
+            //invoke the method
+            Error = AStaff.Valid(EmpFullName, Salary, JobDescriptionPermissions, DateHired);
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void SalaryExtremeMax()
+        {
+            //creating an instance of the class
+            clsStaff AStaff = new clsStaff();
+            //String Variable to hold the error message
+            String Error = "";
+            //Create some test data to pass to the method
+            string Salary = (100000).ToString();
+            //invoke the method
+            Error = AStaff.Valid(EmpFullName, Salary, JobDescriptionPermissions, DateHired);
+            Assert.AreNotEqual(Error, "");
+        }
+        [TestMethod]
+        public void SalaryInvalidData()
+        {
+            //creating an instance of the class
+            clsStaff AStaff = new clsStaff();
+            //String Variable to hold the error message
+            String Error = "";
+            //Create some test data to pass to the method
+            string Salary = "this is not a decimal";
             //invoke the method
             Error = AStaff.Valid(EmpFullName, Salary, JobDescriptionPermissions, DateHired);
             Assert.AreNotEqual(Error, "");

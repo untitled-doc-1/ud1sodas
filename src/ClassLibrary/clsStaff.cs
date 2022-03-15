@@ -136,6 +136,8 @@ namespace ClassLibrary
             String Error = "";
             //temporatry variable to store date values
             DateTime DateTemp;
+            //temporary variable to store the salary
+            Decimal SalaryTemp;
 
             //EmpFullName
             //if the EmpFullName is blank
@@ -144,7 +146,7 @@ namespace ClassLibrary
                 Error = Error + "The Employee Name should not be blank";
             }
 
-            if(empFullName.Length > 50)
+            if (empFullName.Length > 50)
             {
                 Error = Error + "The Employee Name you have entered is too long, Must be less Than 50 Char";
             }
@@ -160,21 +162,55 @@ namespace ClassLibrary
             }
 
             //DateHired
-            //create a temp variable
-            DateTemp = Convert.ToDateTime(DateHired);
-            if (DateTemp < DateTime.Now.Date)
+            try
             {
-                //record the error
-                Error = Error + "The date cannot be in the past";
+            
+                //create a temp variable
+                DateTemp = Convert.ToDateTime(dateHired);
+                if (DateTemp < DateTime.Now.Date)
+                {
+                    //record the error
+                    Error = Error + "The date cannot be in the past";
+                }
+
+                if (DateTemp > DateTime.Now.Date)
+                {
+                    //Record the error
+                    Error = Error + "The date cannot be in the future";
+                }
+            }
+            catch
+            {
+                //Record the Error
+                Error = Error + "The Date Was Not A Valid Date";
             }
 
-            if (DateTemp > DateTime.Now.Date)
+            //Salary
+            try
             {
-                //Record the error
-                Error = Error + "The date cannot be in the future";
+
+                //create a temp variable
+                SalaryTemp = Convert.ToDecimal(salary);
+                if (SalaryTemp < 0)
+                {
+                    //record the error
+                    Error = Error + "The Salary cannot be below 0";
+                }
+
+                if (SalaryTemp > 50000)
+                {
+                    //Record the error
+                    Error = Error + "The Salary cannot exceed 50000";
+                }
+            }
+            catch
+            {
+                //Record the Error
+                Error = Error + "The data enetered was not decimal";
             }
             //return an error message
             return Error;
         }
+
     }
 }
