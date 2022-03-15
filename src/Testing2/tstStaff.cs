@@ -7,6 +7,13 @@ namespace Testing2
     [TestClass]
     public class tstStaff
     {
+        //Good test data
+        //creating some test data to pass for the valid method
+        string EmpFullName = "Edward Morra";
+        string Salary = 2000.ToString();
+        string JobDescriptionPermissions = "Owner";
+        string DateHired = DateTime.Now.Date.ToString();
+
         [TestMethod]
         public void InstanceOK()
         {
@@ -246,6 +253,495 @@ namespace Testing2
             //test to see that the result is correct
             Assert.IsTrue(OK);
 
+        }
+
+        [TestMethod]
+        public void ValidMethodOK()
+        {
+            //creating an instance of the class
+            clsStaff AStaff = new clsStaff();
+            //String variable for the error message
+            String Error = "";
+            //Invoking the method
+            Error = AStaff.Valid(EmpFullName, Salary, JobDescriptionPermissions, DateHired);
+            //test to see that the results are valid
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void EmpFullNameMinLessOne()
+        {
+            //creating an instance of the class
+            clsStaff AStaff = new clsStaff();
+            //String Variable to hold the error message
+            String Error = "";
+            //Create some test data to pass to the method
+            string EmpFullName = "";
+            //invoke the method
+            Error = AStaff.Valid(EmpFullName, Salary, JobDescriptionPermissions, DateHired);
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void EmpFullNameMin()
+        {
+            //creating an instance of the class
+            clsStaff AStaff = new clsStaff();
+            //String Variable to hold the error message
+            String Error = "";
+            //Create some test data to pass to the method
+            string EmpFullName = "E";
+            //invoke the method
+            Error = AStaff.Valid(EmpFullName, Salary, JobDescriptionPermissions, DateHired);
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void EmpFullNameMinPlusOne()
+        {
+            //creating an instance of the class
+            clsStaff AStaff = new clsStaff();
+            //String Variable to hold the error message
+            String Error = "";
+            //Create some test data to pass to the method
+            string EmpFullName = "Ed";
+            //invoke the method
+            Error = AStaff.Valid(EmpFullName, Salary, JobDescriptionPermissions, DateHired);
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void EmpFullNameMaxLessOne()
+        {
+            //creating an instance of the class
+            clsStaff AStaff = new clsStaff();
+            //String Variable to hold the error message
+            String Error = "";
+            //Create some test data to pass to the method
+            string EmpFullName = "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee";
+            //invoke the method
+            Error = AStaff.Valid(EmpFullName, Salary, JobDescriptionPermissions, DateHired);
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void EmpFullNameMax()
+        {
+            //creating an instance of the class
+            clsStaff AStaff = new clsStaff();
+            //String Variable to hold the error message
+            String Error = "";
+            //Create some test data to pass to the method
+            string EmpFullName = "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee";
+            //invoke the method
+            Error = AStaff.Valid(EmpFullName, Salary, JobDescriptionPermissions, DateHired);
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void EmpFullNameMid()
+        {
+            //creating an instance of the class
+            clsStaff AStaff = new clsStaff();
+            //String Variable to hold the error message
+            String Error = "";
+            //Create some test data to pass to the method
+            string EmpFullName = "eeeeeeeeeeeeeeeeeeeeeeeee";
+            //invoke the method
+            Error = AStaff.Valid(EmpFullName, Salary, JobDescriptionPermissions, DateHired);
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void EmpFullNameMaxPlusOne()
+        {
+            //creating an instance of the class
+            clsStaff AStaff = new clsStaff();
+            //String Variable to hold the error message
+            String Error = "";
+            //Create some test data to pass to the method
+            string EmpFullName = "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee";
+            //invoke the method
+            Error = AStaff.Valid(EmpFullName, Salary, JobDescriptionPermissions, DateHired);
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void EmpFullNameExtremeMax()
+        {
+            //creating an instance of the class
+            clsStaff AStaff = new clsStaff();
+            //String Variable to hold the error message
+            String Error = "";
+            //Create some test data to pass to the method
+            string EmpFullName = "";
+            EmpFullName = EmpFullName.PadRight(500, 'e');
+            //invoke the method
+            Error = AStaff.Valid(EmpFullName, Salary, JobDescriptionPermissions, DateHired);
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void JobDescriptionPermissionsMinLessOne()
+        {
+            //creating an instance of the class
+            clsStaff AStaff = new clsStaff();
+            //String Variable to hold the error message
+            String Error = "";
+            //Create some test data to pass to the method
+            string JobDescriptionPermissions = "";
+            //invoke the method
+            Error = AStaff.Valid(EmpFullName, Salary, JobDescriptionPermissions, DateHired);
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void JobDescriptionPermissionsMin()
+        {
+            //creating an instance of the class
+            clsStaff AStaff = new clsStaff();
+            //String Variable to hold the error message
+            String Error = "";
+            //Create some test data to pass to the method
+            string JobDescriptionPermissions = "E";
+            //invoke the method
+            Error = AStaff.Valid(EmpFullName, Salary, JobDescriptionPermissions, DateHired);
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void JobDescriptionPermissionsMinPlusOne()
+        {
+            //creating an instance of the class
+            clsStaff AStaff = new clsStaff();
+            //String Variable to hold the error message
+            String Error = "";
+            //Create some test data to pass to the method
+            string JobDescriptionPermissions = "Ed";
+            //invoke the method
+            Error = AStaff.Valid(EmpFullName, Salary, JobDescriptionPermissions, DateHired);
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void JobDescriptionPermissionsMaxLessOne()
+        {
+            //creating an instance of the class
+            clsStaff AStaff = new clsStaff();
+            //String Variable to hold the error message
+            String Error = "";
+            //Create some test data to pass to the method
+            string JobDescriptionPermissions = "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee";
+            //invoke the method
+            Error = AStaff.Valid(EmpFullName, Salary, JobDescriptionPermissions, DateHired);
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void JobDescriptionPermissionsMax()
+        {
+            //creating an instance of the class
+            clsStaff AStaff = new clsStaff();
+            //String Variable to hold the error message
+            String Error = "";
+            //Create some test data to pass to the method
+            string JobDescriptionPermissions = "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee";
+            //invoke the method
+            Error = AStaff.Valid(EmpFullName, Salary, JobDescriptionPermissions, DateHired);
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void JobDescriptionPermissionsMid()
+        {
+            //creating an instance of the class
+            clsStaff AStaff = new clsStaff();
+            //String Variable to hold the error message
+            String Error = "";
+            //Create some test data to pass to the method
+            string JobDescriptionPermissions = "eeeeeeeeeeeeeeeeeeeeeeeee";
+            //invoke the method
+            Error = AStaff.Valid(EmpFullName, Salary, JobDescriptionPermissions, DateHired);
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void JobDescriptionPermissionsMaxPlusOne()
+        {
+            //creating an instance of the class
+            clsStaff AStaff = new clsStaff();
+            //String Variable to hold the error message
+            String Error = "";
+            //Create some test data to pass to the method
+            string JobDescriptionPermissions = "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee";
+            //invoke the method
+            Error = AStaff.Valid(EmpFullName, Salary, JobDescriptionPermissions, DateHired);
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void JobDescriptionPermissionsExtremeMax()
+        {
+            //creating an instance of the class
+            clsStaff AStaff = new clsStaff();
+            //String Variable to hold the error message
+            String Error = "";
+            //Create some test data to pass to the method
+            string JobDescriptionPermissions = "";
+            JobDescriptionPermissions = JobDescriptionPermissions.PadRight(500, 'e');
+            //invoke the method
+            Error = AStaff.Valid(EmpFullName, Salary, JobDescriptionPermissions, DateHired);
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void DateHiredExtremeMin()
+        {
+            //creating an instance of the class
+            clsStaff AStaff = new clsStaff();
+            //String Variable to hold the error message
+            String Error = "";
+            //Create some test data to pass to the method
+            DateTime TestData;
+            //set the data to todays date
+            TestData = DateTime.Now.Date;
+            //change the data to the extreme min
+            TestData = TestData.AddYears(-100);
+            //Convert the data variable to string
+            string DateHired = TestData.ToString();
+            //invoke the method
+            Error = AStaff.Valid(EmpFullName, Salary, JobDescriptionPermissions, DateHired);
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void DateHiredMinLessOne()
+        {
+            //creating an instance of the class
+            clsStaff AStaff = new clsStaff();
+            //String Variable to hold the error message
+            String Error = "";
+            //Create some test data to pass to the method
+            DateTime TestData;
+            //set the data to todays date
+            TestData = DateTime.Now.Date;
+            //change the data to min value -1 
+            TestData = TestData.AddYears(-1);
+            //Convert the data variable to string
+            string DateHired = TestData.ToString();
+            //invoke the method
+            Error = AStaff.Valid(EmpFullName, Salary, JobDescriptionPermissions, DateHired);
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void DateHiredMin()
+        {
+            //creating an instance of the class
+            clsStaff AStaff = new clsStaff();
+            //String Variable to hold the error message
+            String Error = "";
+            //Create some test data to pass to the method
+            DateTime TestData;
+            //set the data to todays date
+            TestData = DateTime.Now.Date;
+            //Convert the data variable to string
+            string DateHired = TestData.ToString();
+            //invoke the method
+            Error = AStaff.Valid(EmpFullName, Salary, JobDescriptionPermissions, DateHired);
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void DateHiredMinPlusOne()
+        {
+            //creating an instance of the class
+            clsStaff AStaff = new clsStaff();
+            //String Variable to hold the error message
+            String Error = "";
+            //Create some test data to pass to the method
+            DateTime TestData;
+            //set the data to todays date
+            TestData = DateTime.Now.Date;
+            //change the data to Min plus 1
+            TestData = TestData.AddYears(1);
+            //Convert the data variable to string
+            string DateHired = TestData.ToString();
+            //invoke the method
+            Error = AStaff.Valid(EmpFullName, Salary, JobDescriptionPermissions, DateHired);
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void DateHiredExtremeMax()
+        {
+            //creating an instance of the class
+            clsStaff AStaff = new clsStaff();
+            //String Variable to hold the error message
+            String Error = "";
+            //Create some test data to pass to the method
+            DateTime TestData;
+            //set the data to todays date
+            TestData = DateTime.Now.Date;
+            //change the data to the extreme Max
+            TestData = TestData.AddYears(100);
+            //Convert the data variable to string
+            string DateHired = TestData.ToString();
+            //invoke the method
+            Error = AStaff.Valid(EmpFullName, Salary, JobDescriptionPermissions, DateHired);
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void DateHiredInvalidData()
+        {
+            //creating an instance of the class
+            clsStaff AStaff = new clsStaff();
+            //String Variable to hold the error message
+            String Error = "";
+            //Create some test data to pass to the method
+            string DateHired = "this is not a date";
+            //invoke the method
+            Error = AStaff.Valid(EmpFullName, Salary, JobDescriptionPermissions, DateHired);
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void SalaryExtremeMin()
+        {
+            //creating an instance of the class
+            clsStaff AStaff = new clsStaff();
+            //String Variable to hold the error message
+            String Error = "";
+            //Create some test data to pass to the method
+            string Salary = (-100).ToString();
+            //invoke the method
+            Error = AStaff.Valid(EmpFullName, Salary, JobDescriptionPermissions, DateHired);
+            Assert.AreNotEqual(Error, "");
+        }
+        [TestMethod]
+        public void SalaryMinLessOne()
+        {
+            //creating an instance of the class
+            clsStaff AStaff = new clsStaff();
+            //String Variable to hold the error message
+            String Error = "";
+            //Create some test data to pass to the method
+            string Salary = (-1).ToString() ;
+            //invoke the method
+            Error = AStaff.Valid(EmpFullName, Salary, JobDescriptionPermissions, DateHired);
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void SalaryMin()
+        {
+            //creating an instance of the class
+            clsStaff AStaff = new clsStaff();
+            //String Variable to hold the error message
+            String Error = "";
+            //Create some test data to pass to the method
+            string Salary = (0).ToString();
+            //invoke the method
+            Error = AStaff.Valid(EmpFullName, Salary, JobDescriptionPermissions, DateHired);
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void SalaryMinPlusOne()
+        {
+            //creating an instance of the class
+            clsStaff AStaff = new clsStaff();
+            //String Variable to hold the error message
+            String Error = "";
+            //Create some test data to pass to the method
+            string Salary = (1).ToString();
+            //invoke the method
+            Error = AStaff.Valid(EmpFullName, Salary, JobDescriptionPermissions, DateHired);
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void SalaryMaxLessOne()
+        {
+            //creating an instance of the class
+            clsStaff AStaff = new clsStaff();
+            //String Variable to hold the error message
+            String Error = "";
+            //Create some test data to pass to the method
+            string Salary = (49999).ToString();
+            //invoke the method
+            Error = AStaff.Valid(EmpFullName, Salary, JobDescriptionPermissions, DateHired);
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void SalaryMax()
+        {
+            //creating an instance of the class
+            clsStaff AStaff = new clsStaff();
+            //String Variable to hold the error message
+            String Error = "";
+            //Create some test data to pass to the method
+            string Salary = (50000).ToString();
+            //invoke the method
+            Error = AStaff.Valid(EmpFullName, Salary, JobDescriptionPermissions, DateHired);
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void SalaryMid()
+        {
+            //creating an instance of the class
+            clsStaff AStaff = new clsStaff();
+            //String Variable to hold the error message
+            String Error = "";
+            //Create some test data to pass to the method
+            string Salary = (25000).ToString();
+            //invoke the method
+            Error = AStaff.Valid(EmpFullName, Salary, JobDescriptionPermissions, DateHired);
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void SalaryMaxPlusOne()
+        {
+            //creating an instance of the class
+            clsStaff AStaff = new clsStaff();
+            //String Variable to hold the error message
+            String Error = "";
+            //Create some test data to pass to the method
+            string Salary = (50001).ToString();
+            //invoke the method
+            Error = AStaff.Valid(EmpFullName, Salary, JobDescriptionPermissions, DateHired);
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void SalaryExtremeMax()
+        {
+            //creating an instance of the class
+            clsStaff AStaff = new clsStaff();
+            //String Variable to hold the error message
+            String Error = "";
+            //Create some test data to pass to the method
+            string Salary = (100000).ToString();
+            //invoke the method
+            Error = AStaff.Valid(EmpFullName, Salary, JobDescriptionPermissions, DateHired);
+            Assert.AreNotEqual(Error, "");
+        }
+        [TestMethod]
+        public void SalaryInvalidData()
+        {
+            //creating an instance of the class
+            clsStaff AStaff = new clsStaff();
+            //String Variable to hold the error message
+            String Error = "";
+            //Create some test data to pass to the method
+            string Salary = "this is not a decimal";
+            //invoke the method
+            Error = AStaff.Valid(EmpFullName, Salary, JobDescriptionPermissions, DateHired);
+            Assert.AreNotEqual(Error, "");
         }
 
 
