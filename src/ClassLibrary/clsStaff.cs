@@ -129,5 +129,52 @@ namespace ClassLibrary
                 return false;
             }
         }
+
+        public string Valid(string empFullName, string salary, string jobDescriptionPermissions, string dateHired)
+        {
+            //create a string variable to store the error 
+            String Error = "";
+            //temporatry variable to store date values
+            DateTime DateTemp;
+
+            //EmpFullName
+            //if the EmpFullName is blank
+            if (empFullName.Length == 0)
+            {
+                Error = Error + "The Employee Name should not be blank";
+            }
+
+            if(empFullName.Length > 50)
+            {
+                Error = Error + "The Employee Name you have entered is too long, Must be less Than 50 Char";
+            }
+            //JobDescriptionPermissions
+            if (jobDescriptionPermissions.Length == 0)
+            {
+                Error = Error + "The Description should not be blank";
+            }
+
+            if (jobDescriptionPermissions.Length > 50)
+            {
+                Error = Error + "The Description you have entered is too long, Must be less Than 50 Char";
+            }
+
+            //DateHired
+            //create a temp variable
+            DateTemp = Convert.ToDateTime(DateHired);
+            if (DateTemp < DateTime.Now.Date)
+            {
+                //record the error
+                Error = Error + "The date cannot be in the past";
+            }
+
+            if (DateTemp > DateTime.Now.Date)
+            {
+                //Record the error
+                Error = Error + "The date cannot be in the future";
+            }
+            //return an error message
+            return Error;
+        }
     }
 }
