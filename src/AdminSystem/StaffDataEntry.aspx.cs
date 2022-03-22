@@ -23,25 +23,41 @@ public partial class _1_DataEntry : System.Web.UI.Page
         //create a new instance of clsStaff
         clsStaff AStaff = new clsStaff();
         //capture the Employee Name
-        
-        try
+        string EmployeeId = intEmpID.Text;
+        string EmpFullName = txtEmpFullName.Text;
+        string Salary = doubleSalary.Text;
+        string JobDescriptionPermissions = txtJobDescPerm.Text;
+        string DateHired = dateTimeHiringDate.Text;
+        // variable to store any error message
+        string Error = "";
+        //validate the data 
+        Error = AStaff.Valid( EmpFullName, Salary, JobDescriptionPermissions, DateHired);
+        if (Error == "")
         {
-            AStaff.EmployeeId = Int32.Parse(intEmpID.Text);
-            AStaff.EmpFullName = txtEmpFullName.Text;
-            AStaff.Salary = Double.Parse(doubleSalary.Text);
-            AStaff.JobDescriptionPermissions = txtJobDescPerm.Text;
-            AStaff.DateHired = DateTime.Parse(dateTimeHiringDate.Text);
-            AStaff.Active = chkActive.Checked;
-        } catch (Exception ex)
-        {
-            Response.Write(ex.Message);
-        }
-        
-        //Store the fullName in the session object
-        Session["AStaff"]= AStaff;
-        //navigate to the viewer page
-        Response.Redirect("StaffViewer.aspx");
+            try
+            {
+                AStaff.EmployeeId = Int32.Parse(intEmpID.Text);
+                AStaff.EmpFullName = txtEmpFullName.Text;
+                AStaff.Salary = Double.Parse(doubleSalary.Text);
+                AStaff.JobDescriptionPermissions = txtJobDescPerm.Text;
+                AStaff.DateHired = DateTime.Parse(dateTimeHiringDate.Text);
+                AStaff.Active = chkActive.Checked;
+            }
+            catch (Exception ex)
+            {
+                Response.Write(ex.Message);
+            }
 
+            //Store the fullName in the session object
+            Session["AStaff"] = AStaff;
+            //navigate to the viewer page
+            Response.Redirect("StaffViewer.aspx");
+        }
+        else
+        {
+            //display the error message
+            lblError.Text = Error;
+        }
 
     }
 

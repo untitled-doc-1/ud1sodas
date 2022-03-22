@@ -150,6 +150,7 @@ namespace ClassLibrary
             {
                 Error = Error + "The Employee Name you have entered is too long, Must be less Than 50 Char";
             }
+
             //JobDescriptionPermissions
             if (jobDescriptionPermissions.Length == 0)
             {
