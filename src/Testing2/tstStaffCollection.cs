@@ -89,5 +89,36 @@ namespace Testing2
             Assert.AreEqual(AllStaffMembers.Count, TestList.Count);
 
         }
+
+        [TestMethod]
+
+        public void AddMethodOK()
+        {
+            //creating an instancer of the class
+            clsStaffCollection AllStaffMembers = new clsStaffCollection();
+            //creating a test item 
+            clsStaff TestItem = new clsStaff();
+            //variable to store the primary key
+            Int32 PrimaryKey = 0;
+            // setting the properties of the test item
+            TestItem.Active = true;
+            TestItem.DateHired = DateTime.Now.Date;
+            TestItem.EmpFullName = "Ali Medhat";
+            TestItem.EmployeeId = 10;
+            TestItem.JobDescriptionPermissions = "Customer Service";
+            TestItem.Salary = 2300.00;
+            //setting the item as a test data 
+            AllStaffMembers.ThisStaff = TestItem;
+            //Adding the record 
+            PrimaryKey = AllStaffMembers.Add();
+            //setting the primary key of the test data
+            TestItem.EmployeeId = PrimaryKey;
+            //finding the record 
+            AllStaffMembers.ThisStaff.Find(PrimaryKey);
+            //Testing to see if both values are equal
+            Assert.AreEqual(AllStaffMembers.ThisStaff, TestItem);
+        }
+    
+
     }
 }

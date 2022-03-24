@@ -23,10 +23,12 @@ public partial class _1_DataEntry : System.Web.UI.Page
         //create a new instance of clsStaff
         clsStaff AStaff = new clsStaff();
         //capture the Employee Name
-        string EmployeeId = intEmpID.Text;
         string EmpFullName = txtEmpFullName.Text;
+        //capture Salary
         string Salary = doubleSalary.Text;
+        //capture Job Description and permissions
         string JobDescriptionPermissions = txtJobDescPerm.Text;
+        //capture the date Hired
         string DateHired = dateTimeHiringDate.Text;
         // variable to store any error message
         string Error = "";
@@ -36,11 +38,17 @@ public partial class _1_DataEntry : System.Web.UI.Page
         {
             try
             {
+                //capture the Employee Id
                 AStaff.EmployeeId = Int32.Parse(intEmpID.Text);
+                //capture the Employee full name
                 AStaff.EmpFullName = txtEmpFullName.Text;
+                //capture the salary
                 AStaff.Salary = Double.Parse(doubleSalary.Text);
+                //capture the job description and permissions
                 AStaff.JobDescriptionPermissions = txtJobDescPerm.Text;
+                //capture the date hired
                 AStaff.DateHired = DateTime.Parse(dateTimeHiringDate.Text);
+                //capture active
                 AStaff.Active = chkActive.Checked;
             }
             catch (Exception ex)
@@ -48,10 +56,14 @@ public partial class _1_DataEntry : System.Web.UI.Page
                 Response.Write(ex.Message);
             }
 
-            //Store the fullName in the session object
-            Session["AStaff"] = AStaff;
-            //navigate to the viewer page
-            Response.Redirect("StaffViewer.aspx");
+            //create a new instance of the staff collection
+            clsStaffCollection StaffList = new clsStaffCollection();
+            //set the ThisStaff property
+            StaffList.ThisStaff = AStaff;
+            //Adding the new record
+            StaffList.Add();
+            //redirect back to the listpage
+            Response.Redirect("StaffList.aspx");
         }
         else
         {

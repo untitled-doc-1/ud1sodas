@@ -31,4 +31,12 @@ public partial class _1_List : System.Web.UI.Page
         //binding the data to the list
         lstStaffList.DataBind();
     }
+
+    protected void btnAdd_Click(object sender, EventArgs e)
+    {
+        //Store -1 into the session object to indicate this is a new record 
+        Session["EmployeeId"] = -1;
+        //redirect to the data entry page
+        Response.Redirect("StaffDataEntry.aspx");
+    }
 }
