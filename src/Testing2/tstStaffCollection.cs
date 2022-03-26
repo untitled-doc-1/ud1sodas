@@ -157,6 +157,38 @@ namespace Testing2
             //Testing to see if thisStaff matches the test data
             Assert.AreEqual(AllStaffMembers.ThisStaff, TestItem);
         }
+
+        [TestMethod]
+        public void DeleteMethodOK()
+        {
+            //creating an instance of the class
+            clsStaffCollection AllStaffMembers = new clsStaffCollection();
+            //creating a test Item
+            clsStaff TestItem = new clsStaff();
+            //A variable to store the primary key
+            Int32 PrimaryKey = 0;
+            //setting test item's properties
+            TestItem.Active = false;
+            TestItem.DateHired = DateTime.Now.Date;
+            TestItem.EmpFullName = "Camilla Takagi";
+            TestItem.EmployeeId = 16;
+            TestItem.JobDescriptionPermissions = "Customer Service";
+            TestItem.Salary = 2600.00;
+            //Setting thisStaff to the test data
+            AllStaffMembers.ThisStaff = TestItem;
+            //adding the record 
+            PrimaryKey = AllStaffMembers.Add();
+            //setting the primary key of the test data
+            TestItem.EmployeeId = PrimaryKey;
+            //finding the record
+            AllStaffMembers.ThisStaff.Find(PrimaryKey);
+            //deleting the record
+            AllStaffMembers.Delete();
+            //now try finding the record again
+            Boolean Found = AllStaffMembers.ThisStaff.Find(PrimaryKey);
+            //testing to see if the record is not found
+            Assert.IsFalse(Found);
+        }
     
 
     }
