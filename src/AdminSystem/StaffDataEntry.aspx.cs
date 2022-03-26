@@ -8,9 +8,36 @@ using ClassLibrary;
 
 public partial class _1_DataEntry : System.Web.UI.Page
 {
+    //variable to store the primary key with page level scope
+    Int32 EmployeeId;
     protected void Page_Load(object sender, EventArgs e)
     {
+        //getting the number of the staff member to be processed
+        EmployeeId = Convert.ToInt32(Session["EmployeeId"]);
+        if (IsPostBack == false)
+        {
+            //if this is not a new record
+            if(EmployeeId != -1)
+            {
+                //displaying the current data for the record
+                DisplayStaff();
+            }
+        }
+    }
 
+    private void DisplayStaff()
+    {
+        //creating an instance of the staff collection
+        clsStaffCollection StaffBook = new clsStaffCollection();
+        //finding the record to update
+        StaffBook.ThisStaff.Find(EmployeeId);
+        //Displaying the data for this record
+        intEmpID.Text = Convert.ToString(StaffBook.ThisStaff.EmployeeId);
+        txtEmpFullName.Text = StaffBook.ThisStaff.EmpFullName;
+        doubleSalary.Text = Convert.ToString(StaffBook.ThisStaff.Salary);
+        txtJobDescPerm.Text = StaffBook.ThisStaff.JobDescriptionPermissions;
+        dateTimeHiringDate.Text = Convert.ToString(StaffBook.ThisStaff.DateHired);
+        chkActive.Checked = StaffBook.ThisStaff.Active;
     }
 
     protected void intEmpID_TextChanged(object sender, EventArgs e)
@@ -58,10 +85,25 @@ public partial class _1_DataEntry : System.Web.UI.Page
 
             //create a new instance of the staff collection
             clsStaffCollection StaffList = new clsStaffCollection();
-            //set the ThisStaff property
-            StaffList.ThisStaff = AStaff;
-            //Adding the new record
-            StaffList.Add();
+
+            //if this is a new record i.e. EmployeeId = -1 then add the data 
+            if (EmployeeId == -1)
+            {
+                //set the ThisStaff property
+                StaffList.ThisStaff = AStaff;
+                //Adding the new record
+                StaffList.Add();
+            }
+            //otherwise it must be an update
+            else
+            {
+                //find the record to update 
+                StaffList.ThisStaff.Find(EmployeeId);
+                //setting thisStaff properties
+                StaffList.ThisStaff = AStaff;
+                //updating the record
+                StaffList.Update();
+            }
             //redirect back to the listpage
             Response.Redirect("StaffList.aspx");
         }

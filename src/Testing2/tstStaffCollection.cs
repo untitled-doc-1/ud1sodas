@@ -118,6 +118,45 @@ namespace Testing2
             //Testing to see if both values are equal
             Assert.AreEqual(AllStaffMembers.ThisStaff, TestItem);
         }
+
+        [TestMethod]
+        public void UpdateMethod()
+        {
+            //creating an instance of the class 
+            clsStaffCollection AllStaffMembers = new clsStaffCollection();
+            //creating the item for testing
+            clsStaff TestItem = new clsStaff();
+            //variable to store the primary key
+            Int32 PrimaryKey = 0;
+            //Setting the properties for the item
+            TestItem.Active = true;
+            TestItem.DateHired = DateTime.Now.Date;
+            TestItem.EmpFullName = "Hadel Medhat";
+            TestItem.EmployeeId = 16;
+            TestItem.JobDescriptionPermissions = "Customer Service";
+            TestItem.Salary = 2300.00;
+            //setting this staff to the test data 
+            AllStaffMembers.ThisStaff = TestItem;
+            //adding the record
+            PrimaryKey = AllStaffMembers.Add();
+            //setting the primary key of the test data 
+            TestItem.EmployeeId = PrimaryKey;
+            //modifying the test data
+            TestItem.Active = false;
+            TestItem.DateHired = DateTime.Now.Date;
+            TestItem.EmpFullName = "Louise Nilsen";
+            TestItem.EmployeeId = 16;
+            TestItem.JobDescriptionPermissions = "Customer Service";
+            TestItem.Salary = 2600.00;
+            //setting the record based on the new test data 
+            AllStaffMembers.ThisStaff = TestItem;
+            //updating the record
+            AllStaffMembers.Update();
+            //finding the record 
+            AllStaffMembers.ThisStaff.Find(PrimaryKey);
+            //Testing to see if thisStaff matches the test data
+            Assert.AreEqual(AllStaffMembers.ThisStaff, TestItem);
+        }
     
 
     }
