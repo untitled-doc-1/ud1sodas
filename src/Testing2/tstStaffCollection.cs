@@ -189,7 +189,120 @@ namespace Testing2
             //testing to see if the record is not found
             Assert.IsFalse(Found);
         }
-    
+
+        [TestMethod]
+        public void ReportByEmpFullNameMethodeOK()
+        {
+            //creating an instance of the class 
+            clsStaffCollection AllStaffMembers = new clsStaffCollection();
+            //creating an instance of the filtered data
+            clsStaffCollection FilteredStaffMembers = new clsStaffCollection();
+            //applying a blank string (should return all records);
+            FilteredStaffMembers.ReportByEmpFullName("");
+            //testing to see that both values are the same
+            Assert.AreEqual(AllStaffMembers.Count, FilteredStaffMembers.Count);
+        }
+
+        [TestMethod]
+        public void ReportByEmpFullNameNoneFound()
+        {
+            //creating an instance of the filtered data
+            clsStaffCollection FilteredStaffMembers = new clsStaffCollection();
+            //applying an employee name that doesn't exist
+            FilteredStaffMembers.ReportByEmpFullName("lalal");
+            //testing to see that there are no such record
+            Assert.AreEqual(0, FilteredStaffMembers.Count);
+        }
+
+        [TestMethod]
+        public void ReportByEmpFullNameTestDataFound()
+        {
+            //creating an instance of the filtered data
+            clsStaffCollection FilteredStaffMembers = new clsStaffCollection();
+            //variable to store outcome
+            Boolean OK = true;
+            //applying an employee full name that dosen't exist
+            FilteredStaffMembers.ReportByEmpFullName("Sara Eizeddin");
+            //checking if the correct number of records are found 
+            if (FilteredStaffMembers.Count == 2)
+            {
+                //cheking that the first record is ID 36
+                if (FilteredStaffMembers.StaffList[0].EmployeeId != 11)
+                {
+                    OK = false;
+                }
+
+                //checking that the first record is ID 37
+                if (FilteredStaffMembers.StaffList[1].EmployeeId != 51)
+                {
+                    OK = false;
+                }
+            }
+            else
+            {
+                OK = false;
+            }
+            //testing to see that there are no records
+            Assert.IsTrue(OK);
+        }
+
+
+        [TestMethod]
+        public void ReportJobDescriptionPermissions()
+        {
+            //creating an instance of the class 
+            clsStaffCollection AllStaffMembers = new clsStaffCollection();
+            //creating an instance of the filtered data
+            clsStaffCollection FilteredStaffMembers = new clsStaffCollection();
+            //applying a blank string (should return all records);
+            FilteredStaffMembers.ReportJobDescriptionPermissions("");
+            //testing to see that both values are the same
+            Assert.AreEqual(AllStaffMembers.Count, FilteredStaffMembers.Count);
+        }
+
+        [TestMethod]
+        public void ReportJobDescriptionPermissionsNoneFound()
+        {
+            //creating an instance of the filtered data
+            clsStaffCollection FilteredStaffMembers = new clsStaffCollection();
+            //applying an employee name that doesn't exist
+            FilteredStaffMembers.ReportJobDescriptionPermissions("lalal");
+            //testing to see that there are no such record
+            Assert.AreEqual(0, FilteredStaffMembers.Count);
+        }
+
+        [TestMethod]
+        public void ReportJobDescriptionPermissionsTestDataFound()
+        {
+            //creating an instance of the filtered data
+            clsStaffCollection FilteredStaffMembers = new clsStaffCollection();
+            //variable to store outcome
+            Boolean OK = true;
+            //applying an employee full name that dosen't exist
+            FilteredStaffMembers.ReportJobDescriptionPermissions("Marketing");
+            //checking if the correct number of records are found 
+            if (FilteredStaffMembers.Count == 2)
+            {
+                //cheking that the first record is ID 36
+                if (FilteredStaffMembers.StaffList[0].EmployeeId != 2)
+                {
+                    OK = false;
+                }
+
+                //checking that the first record is ID 37
+                if (FilteredStaffMembers.StaffList[1].EmployeeId != 3)
+                {
+                    OK = false;
+                }
+            }
+            else
+            {
+                OK = false;
+            }
+            //testing to see that there are no records
+            Assert.IsTrue(OK);
+        }
+
 
     }
 }

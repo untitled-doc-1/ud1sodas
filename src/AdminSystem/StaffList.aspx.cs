@@ -81,4 +81,64 @@ public partial class _1_List : System.Web.UI.Page
             lblError.Text = "Please select a record to be deleted from the list";
         }
     }
+
+    protected void btnApply_Click(object sender, EventArgs e)
+    {
+        //creating an instance of the class of the staff collection
+        clsStaffCollection StaffMembers = new clsStaffCollection();
+        StaffMembers.ReportByEmpFullName(txtFilter.Text);
+        lstStaffList.DataSource = StaffMembers.StaffList;
+        //setting the name of the primary key
+        lstStaffList.DataValueField = "EmployeeId";
+        //setting the name of the field to diplay
+        lstStaffList.DataTextField = "EmpFullName";
+        //binding the data to the list
+        lstStaffList.DataBind();
+    }
+
+    protected void btnClear_Click(object sender, EventArgs e)
+    {
+        //creating an instance of the class of the staff collection
+        clsStaffCollection StaffMembers = new clsStaffCollection();
+        StaffMembers.ReportByEmpFullName("");
+        //clearing any existing filter to tidy up the interface
+        txtFilter.Text = "";
+        lstStaffList.DataSource = StaffMembers.StaffList;
+        //setting the name of the primary key
+        lstStaffList.DataValueField = "EmployeeId";
+        //setting the name of the field to diplay
+        lstStaffList.DataTextField = "EmpFullName";
+        //binding the data to the list
+        lstStaffList.DataBind();
+    }
+
+    protected void btnApply1_Click(object sender, EventArgs e)
+    {
+        //creating an instance of the class of the staff collection
+        clsStaffCollection StaffMembers = new clsStaffCollection();
+        StaffMembers.ReportJobDescriptionPermissions(txtFilter1.Text);
+        lstStaffList.DataSource = StaffMembers.StaffList;
+        //setting the name of the primary key
+        lstStaffList.DataValueField = "EmployeeId";
+        //setting the name of the field to diplay
+        lstStaffList.DataTextField = "JobDescriptionPermissions";
+        //binding the data to the list
+        lstStaffList.DataBind();
+    }
+
+    protected void btnClear1_Click(object sender, EventArgs e)
+    {
+        //creating an instance of the class of the staff collection
+        clsStaffCollection StaffMembers = new clsStaffCollection();
+        StaffMembers.ReportJobDescriptionPermissions("");
+        //clearing any existing filter to tidy up the interface
+        txtFilter1.Text = "";
+        lstStaffList.DataSource = StaffMembers.StaffList;
+        //setting the name of the primary key
+        lstStaffList.DataValueField = "EmployeeId";
+        //setting the name of the field to diplay
+        lstStaffList.DataTextField = "JobDescriptionPermissions";
+        //binding the data to the list
+        lstStaffList.DataBind();
+    }
 }
