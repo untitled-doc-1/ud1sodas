@@ -33,7 +33,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Testing5", "Testing5\Testin
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "tstStock", "Testing4\tstStock.csproj", "{D7E86DE2-138C-4B6B-A195-C247244515E9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Testing3", "Testing3\Testing3.csproj", "{7032FF54-9316-4FFF-9612-EBA55F9781BA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "tstCustomer", "Testing3\tstCustomer.csproj", "{7032FF54-9316-4FFF-9612-EBA55F9781BA}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "tstStaff", "Testing2\tstStaff.csproj", "{53F17854-E215-4FE3-9860-C1E18BF9C6C7}"
 EndProject
