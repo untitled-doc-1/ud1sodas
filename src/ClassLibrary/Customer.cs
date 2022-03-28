@@ -105,6 +105,24 @@ namespace ClassLibrary
             
             return true;
         }
+
+        public bool FindViaDatabase(int customerId)
+        {
+            var db = new clsDataConnection();
+            db.AddParameter("@CustomerId", customerId);
+            db.Execute("sproc_Customer_FilterByCustomerId");
+            
+            if (db.Count > 0)
+            {
+                mAddress = Convert.ToString(db.DataTable.Rows[0]["Address"]);
+                mEmail = Convert.ToString(db.DataTable.Rows[0]["Email"]);
+                mPasswordHash = Convert.ToString(db.DataTable.Rows[0]["PasswordHash"]);
+                mFullName = Convert.ToString(db.DataTable.Rows[0]["FullName"]);
+                mPhoneNumber = Convert.ToInt32(db.DataTable.Rows[0]["PhoneNumber"]);
+                mDisabled = Convert.ToBoolean(db.DataTable.Rows[0]["Disabled"]);
+            }
+            return true;
+        }
     }
 
 }
