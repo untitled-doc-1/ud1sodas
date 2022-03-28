@@ -23,7 +23,25 @@ namespace Testing3
             customerProperty.SetValue(customer, value);
             // assert
             Assert.AreEqual(value, customerProperty.GetValue(customer));
+        }
 
+        [TestMethod]
+        [DataRow("FullName", "This is a ridiculous way of testing.")]
+        [DataRow("Email", "i.really.do.not.agree.with.this@test.com")]
+        [DataRow("PasswordHash", "AAABBBCCC111222333")]
+        [DataRow("Address", "Test me!")]
+        [DataRow("PhoneNumber", 01110001233)]
+        [DataRow("Disabled", false)]
+        public void Customer_Find_FindsProperties(string property, object value)
+        {
+            // arrange
+            var customer = new Customer();
+            var customerProperty = customer.GetType().GetProperty(property);
+            // act
+            var found = customer.Find(1);
+            // assert
+            Assert.IsTrue(found);
+            Assert.AreEqual(value, customerProperty.GetValue(customer));
         }
 
         public void Customer_InstatiateWithoutProperties_InstantiatesProperly()
@@ -45,6 +63,18 @@ namespace Testing3
             customer.SignedUpDate = timeNow;
             // assert
             Assert.AreEqual(timeNow, customer.SignedUpDate);
+        }
+
+        [TestMethod]
+
+        public void Customer_Find_ReturnsTrue()
+        {
+            // arrange
+            var customer = new Customer();
+            // act
+            var result = customer.Find(1);
+            // assert
+            Assert.AreEqual(true, result);
         }
     }
 }
