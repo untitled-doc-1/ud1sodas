@@ -70,11 +70,11 @@ namespace ClassLibrary
             // connecting to the database 
             clsDataConnection DB = new clsDataConnection();
             // setting the parameters for the stored procedure
-            DB.AddParameter("@EmpFullName", mThisOrder.EmpFullName);
-            DB.AddParameter("@Salary", mThisOrder.Salary);
-            DB.AddParameter("@DateHired", mThisOrder.DateHired);
-            DB.AddParameter("@JobDescriptionPermissions", mThisOrder.JobDescriptionPermissions);
-            DB.AddParameter("@Active", mThisOrder.Active);
+            DB.AddParameter("@OrderTotal", mThisOrder.TotalCost);
+            DB.AddParameter("@Description", mThisOrder.Description);
+            DB.AddParameter("@TotalItems", mThisOrder.TotalItems);
+            DB.AddParameter("@DatePlaced", mThisOrder.DatePlaced);
+            DB.AddParameter("@Fulfilment", mThisOrder.Fulfillment_status);
 
             // executing the query returning the primary key value
             return DB.Execute("sproc_tblOrder_Insert");

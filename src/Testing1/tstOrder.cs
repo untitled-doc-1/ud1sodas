@@ -2,7 +2,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 
-namespace Testing1
+namespace tstOrder
 {
     [TestClass]
     public class tstOrder
@@ -25,78 +25,71 @@ Fulfilled		Bool
         public void InstanceOK()
         {
             //create an instance of the class
-            clsOrder exampleOrder = new clsOrder("InstanceOK", arr);
+            clsOrder exampleOrder = new clsOrder();
             //test for existance
             Assert.IsNotNull(exampleOrder);
         }
 
-        [TestMethod]
-        public void IDIncrementOK()
-        {
-            clsOrder.IDCounter = 0;
-            clsOrder order1 = new clsOrder("", arr);
-            Assert.AreEqual(0, order1.ID);
-        }
+        //[TestMethod]
+        //public void IDIncrementOK()
+        //{
+        //    clsOrder.IDCounter = 0;
+        //    clsOrder order1 = new clsOrder();
+        //    Assert.AreEqual(0, order1.ID);
+        //}
 
         [TestMethod]
         public void OrderIDPropertyOK()
         {
-            clsOrder.IDCounter = 0;
-            clsOrder order1 = new clsOrder("", arr);
-            int num = order1.ID + 1;
-            clsOrder order2 = new clsOrder("", arr);
-            Assert.AreEqual(num, order2.ID);
+            clsOrder order1 = new clsOrder();
+            clsOrder order2 = new clsOrder();
+            Assert.AreEqual(order1.ID, order2.ID);
         }
 
         [TestMethod]
         public void OrderTotalPropertyOK()
         {
-            clsOrder[] arrOrder = new clsOrder[2]
-            {
-                new clsOrder("arrOrder1", arr),
-                new clsOrder("arrOrder2", arr)
-            };
-            clsOrder aOrder = new clsOrder("ExampleOrderLine", arr);
-            clsOrder bOrder = new clsOrder("Example B OrderLine", arrOrder);
+            clsOrder aOrder = new clsOrder();
+            aOrder.TotalItems = 2;
 
-            Assert.AreEqual(aOrder.TotalCost * 2, bOrder.TotalCost);
+            Assert.AreEqual(aOrder.TotalItems, 2);
         }
 
 
         [TestMethod]
         public void DescriptionPropertyOK()
         {
-            clsOrder order1 = new clsOrder("Baked beans, sausages, eggs, tomatoes, bread and bacon", arr);
+            clsOrder order1 = new clsOrder();
+            order1.Description = "Baked beans, sausages, eggs, tomatoes, bread and bacon";
             string expected = "Baked beans, sausages, eggs, tomatoes, bread and bacon";
-            Assert.AreEqual(order1.GetDescription(), expected);
+            Assert.AreEqual(order1.Description, expected);
         }
 
 
         [TestMethod]
         public void TotalItemsPropertyOK()
         {
-            clsOrder[] arrOrder = new clsOrder[2]
-            {
-                new clsOrder("arrOrder1", arr),
-                new clsOrder("arrOrder2", arr)
-            };
-            clsOrder order1 = new clsOrder("Example", arrOrder);
-            Assert.AreEqual(order1.GetTotalItems(), 2);
+            clsOrder aOrder = new clsOrder();
+            clsOrder bOrder = new clsOrder();;
+            aOrder.TotalItems = 3;
+            bOrder.TotalItems = 3;
+            Assert.AreEqual(aOrder.TotalItems, bOrder.TotalItems);
         }
 
         [TestMethod]
         public void DatePlacedPropertyOK()
         {
-            clsOrder order1 = new clsOrder("example clsOrder", arr);
-            Assert.AreEqual(order1.GetDatePlaced().Date, DateTime.Now.Date);
+            clsOrder order1 = new clsOrder();
+            order1.DatePlaced = DateTime.Now;
+            Assert.AreEqual(order1.DatePlaced.Date, DateTime.Now.Date);
         }
 
         [TestMethod]
         public void FulfilledPropertyOK()
         {
-            clsOrder aOrder = new clsOrder("Example Order", arr);
-            aOrder.CompleteOrder();
-            Assert.IsTrue(aOrder.GetFulfillment_status());
+            clsOrder aOrder = new clsOrder();
+            aOrder.Fulfillment_status = true;
+            Assert.IsTrue(aOrder.Fulfillment_status);
         }
     }
 }

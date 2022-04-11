@@ -60,7 +60,7 @@ namespace ClassLibrary
 
 
 
-        public int GetTotalItems
+        public int TotalItems
         {
             get
             {
@@ -74,7 +74,7 @@ namespace ClassLibrary
 
 
 
-        public DateTime GetDatePlaced
+        public DateTime DatePlaced
         {
             get
             {
@@ -87,7 +87,7 @@ namespace ClassLibrary
         }
 
 
-        public bool GetFulfillment_status
+        public bool Fulfillment_status
         {
             get
             {
