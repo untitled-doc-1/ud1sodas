@@ -22,7 +22,7 @@ Fulfilled		Bool
         private static clsOrder[] arr = Array.Empty<clsOrder>();
 
         [TestMethod]
-        public void tstInstanceOK()
+        public void InstanceOK()
         {
             //create an instance of the class
             clsOrder exampleOrder = new clsOrder("InstanceOK", arr);
@@ -31,7 +31,7 @@ Fulfilled		Bool
         }
 
         [TestMethod]
-        public void tstIDIncrement()
+        public void IDIncrementOK()
         {
             clsOrder.IDCounter = 0;
             clsOrder order1 = new clsOrder("", arr);
@@ -39,7 +39,7 @@ Fulfilled		Bool
         }
 
         [TestMethod]
-        public void tstOrderID()
+        public void OrderIDPropertyOK()
         {
             clsOrder.IDCounter = 0;
             clsOrder order1 = new clsOrder("", arr);
@@ -49,7 +49,7 @@ Fulfilled		Bool
         }
 
         [TestMethod]
-        public void tstOrderTotal()
+        public void OrderTotalPropertyOK()
         {
             clsOrder[] arrOrder = new clsOrder[2]
             {
@@ -64,7 +64,7 @@ Fulfilled		Bool
 
 
         [TestMethod]
-        public void tstDescription()
+        public void DescriptionPropertyOK()
         {
             clsOrder order1 = new clsOrder("Baked beans, sausages, eggs, tomatoes, bread and bacon", arr);
             string expected = "Baked beans, sausages, eggs, tomatoes, bread and bacon";
@@ -73,7 +73,7 @@ Fulfilled		Bool
 
 
         [TestMethod]
-        public void tstTotalItems()
+        public void TotalItemsPropertyOK()
         {
             clsOrder[] arrOrder = new clsOrder[2]
             {
@@ -85,14 +85,14 @@ Fulfilled		Bool
         }
 
         [TestMethod]
-        public void tstDatePlaced()
+        public void DatePlacedPropertyOK()
         {
             clsOrder order1 = new clsOrder("example clsOrder", arr);
             Assert.AreEqual(order1.GetDatePlaced().Date, DateTime.Now.Date);
         }
 
         [TestMethod]
-        public void tstFulfilledOrder()
+        public void FulfilledPropertyOK()
         {
             clsOrder aOrder = new clsOrder("Example Order", arr);
             aOrder.CompleteOrder();
