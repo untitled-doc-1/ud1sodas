@@ -18,6 +18,7 @@ namespace ClassLibrary
 
     public class clsOrder
     {
+        // Private fields
         public int mID;
         private string mDescription;
         private int mTotalItems;
@@ -25,11 +26,17 @@ namespace ClassLibrary
         private bool mFulfillment_status = false;
         private DateTime mDatePlaced;
 
+        /// <summary>
+        /// Constructor for clsOrder object
+        /// </summary>
         public clsOrder()
         {
 
         }
 
+        /// <summary>
+        /// public ID property with accessors
+        /// </summary>
         public int ID
         {
             get
@@ -42,6 +49,9 @@ namespace ClassLibrary
             }
         }
 
+        /// <summary>
+        /// public Description property with accessors
+        /// </summary>
         public string Description
         {
             get
@@ -54,6 +64,9 @@ namespace ClassLibrary
             }
         }
 
+        /// <summary>
+        /// public TotalCost property with accessors
+        /// </summary>
         public decimal TotalCost
         {
             get
@@ -67,7 +80,9 @@ namespace ClassLibrary
         }
 
 
-
+        /// <summary>
+        /// public TotalItems property with accessors
+        /// </summary>
         public int TotalItems
         {
             get
@@ -80,8 +95,9 @@ namespace ClassLibrary
             }
         }
 
-
-
+        /// <summary>
+        /// public DatePlaced property with accessors
+        /// </summary>
         public DateTime DatePlaced
         {
             get
@@ -95,6 +111,9 @@ namespace ClassLibrary
         }
 
 
+        /// <summary>
+        /// public Fulfilment_status property with accessors
+        /// </summary>
         public bool Fulfillment_status
         {
             get
@@ -108,6 +127,11 @@ namespace ClassLibrary
 
         }
 
+        /// <summary>
+        /// Searches database for specific order with matching ID
+        /// </summary>
+        /// <param name="OrderID"></param>
+        /// <returns></returns>
         public bool Find(int OrderID)
         {
             // create an instance of the database connection
@@ -136,6 +160,14 @@ namespace ClassLibrary
             }
         }
 
+        /// <summary>
+        /// Validates the parameters passed to the method, with strings representing the different fields
+        /// </summary>
+        /// <param name="description"></param>
+        /// <param name="totalCost"></param>
+        /// <param name="totalItems"></param>
+        /// <param name="datePlaced"></param>
+        /// <returns>Error message based on the output</returns>
         public string Validate(string description, string totalCost, string totalItems, string datePlaced)
         {
             // create a string variable to store the error message string
@@ -150,20 +182,20 @@ namespace ClassLibrary
             if (description.Length == 0)
             {
                 // Concatenate the error message string
-                Error += "The Description should not be blank";
+                Error += "The Description should not be blank\n";
             }
 
             if (description.Length >= 50)
             {
                 // Concatenate the error message string
-                Error += "The Employee Name you have entered is too long, Must be less Than 50 Char";
+                Error += "The Employee Name you have entered is too long, Must be less Than 50 Char\n";
             }
 
             // JobDescriptionPermissions
             if (totalItems.Length == 0)
             {
                 // Concatenate the error message string
-                Error += "The order cannot be empty";
+                Error += "The order cannot be empty\n";
             }
 
             // DatePlaced
@@ -175,19 +207,19 @@ namespace ClassLibrary
                 if (TempDate < DateTime.Now.Date)
                 {
                     // Concatenate the error message string
-                    Error += "Invalid past date";
+                    Error += "Invalid past date\n";
                 }
 
                 if (TempDate > DateTime.Now.Date)
                 {
                     // Concatenate the error message string
-                    Error += "Invalid future date";
+                    Error += "Invalid future date\n";
                 }
             }
             catch
             {
                 // Concatenate the error message string
-                Error += "The Date Was Not A Valid Date";
+                Error += "The Date Was Not A Valid Date\n";
             }
 
             // TotalCost
@@ -199,19 +231,19 @@ namespace ClassLibrary
                 if (TempCost < 0)
                 {
                     // Concatenate the error message string
-                    Error += "The order's total cost cannot be below 0";
+                    Error += "The order's total cost cannot be below 0\n";
                 }
 
                 if (TempCost > 50000)
                 {
                     // Concatenate the error message string 
-                    Error += "The order's total cost cannot exceed 50000";
+                    Error += "The order's total cost cannot exceed 50000\n";
                 }
             }
             catch
             {
                 // Concatenate the error message string
-                Error += "The data entered was not decimal";
+                Error += "The data entered was not decimal\n";
             }
             // return the error message string
             return Error;

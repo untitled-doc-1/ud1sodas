@@ -6,14 +6,20 @@ namespace ClassLibrary
     public class clsOrderCollection
     {
         // Fields
-        
-        // List object of several Order objects
+
+        /// <summary>
+        /// List object of several Order objects
+        /// </summary>
         private List<clsOrder> mOrdersList = new List<clsOrder>();
-        
-        // Object for this order
+
+        /// <summary>
+        /// Object for this order
+        /// </summary>
         private clsOrder mThisOrder = new clsOrder();
 
-        // Constructor
+        /// <summary>
+        /// Constructor
+        /// </summary>
         public clsOrderCollection()
         {
             // object for data connection 
@@ -25,6 +31,10 @@ namespace ClassLibrary
         }
 
         // Methods
+
+        /// <summary>
+        /// public OrdersList property with accessors
+        /// </summary>
         public List<clsOrder> OrdersList
         {
             get
@@ -39,6 +49,9 @@ namespace ClassLibrary
             }
         }
 
+        /// <summary>
+        /// public Count property with accessors
+        /// </summary>
         public int Count
         {
             get
@@ -49,6 +62,10 @@ namespace ClassLibrary
 
             // No set method needed because Count method is internal and not overridden
         }
+
+        /// <summary>
+        /// public ThisOrder property with accessors
+        /// </summary>
         public clsOrder ThisOrder
         {
             get
@@ -64,6 +81,10 @@ namespace ClassLibrary
             }
         }
 
+        /// <summary>
+        /// public Add method, adds a new record to the table
+        /// </summary>
+        /// <returns>Return value, 1 if failure, 0 if successful</returns>
         public int Add()
         {
             // Adds a new record to the database based on the values of mThisOrder
@@ -80,6 +101,9 @@ namespace ClassLibrary
             return DB.Execute("sproc_tblOrder_Insert");
         }
 
+        /// <summary>
+        /// public Update method, updates an existing record in the table
+        /// </summary>
         public void Update()
         {
             // updating an existing record based on the values of mThisOrder
@@ -96,6 +120,9 @@ namespace ClassLibrary
             DB.Execute("sproc_tblOrder_Update");
         }
 
+        /// <summary>
+        /// public Delete method, deletes an existing record based on the current mThisOrder object ID
+        /// </summary>
         public void Delete()
         {
             // deletes the record pointed to by mThisOrder
@@ -107,6 +134,10 @@ namespace ClassLibrary
             DB.Execute("sproc_tblOrder_Delete");
         }
 
+        /// <summary>
+        /// Filters the table's records for orders with a mathcing Description
+        /// </summary>
+        /// <param name="desc"></param>
         public void ReportByDescr(string desc)
         {
             // filters the records based on a full or partial Order Description
@@ -120,6 +151,10 @@ namespace ClassLibrary
             PopulateArray(DB);
         }
 
+        /// <summary>
+        /// Filters the table's records for orders which have been fulfilled (or not)
+        /// </summary>
+        /// <param name="fulfilled"></param>
         public void ReportByFulfilmentStatus(bool fulfilled)
         {
             // filters the records based on a full or partial Order Description
@@ -134,7 +169,10 @@ namespace ClassLibrary
         }
 
 
-
+        /// <summary>
+        /// Populates mOrdersList with records from the table
+        /// </summary>
+        /// <param name="DB"></param>
         void PopulateArray(clsDataConnection DB)
         {
             // populates the array list based on the data table in the parameter DB
