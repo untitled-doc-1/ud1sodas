@@ -8,6 +8,14 @@ using System.Threading.Tasks;
 
 namespace ClassLibrary
 {
+
+    /*
+        var server = "v00egd00001l.lec-admin.dmu.ac.uk";
+        string db = "p2612742";
+        string user = "p2612742";
+        string pass = "Untitled5";
+    */
+
     public class clsOrder
     {
         public int mID;
@@ -99,13 +107,5 @@ namespace ClassLibrary
             }
 
         }
-
-        /*
-        var server = "v00egd00001l.lec-admin.dmu.ac.uk";
-        string db = "p2612742";
-        string user = "p2612742";
-        string pass = "Untitled5";
-        */
-
     }
 }

@@ -82,23 +82,23 @@ namespace ClassLibrary
 
         public void Update()
         {
-            // updating an existing record based on the values of thisSatff
+            // updating an existing record based on the values of mThisOrder
             // connecting to the database
             clsDataConnection DB = new clsDataConnection();
             // Setting the parameters for the stored procedure
             DB.AddParameter("@OrderId", mThisOrder.ID);
-            DB.AddParameter("@EmpFullName", mThisOrder.EmpFullName);
-            DB.AddParameter("@Salary", mThisOrder.Salary);
-            DB.AddParameter("@DateHired", mThisOrder.DateHired);
-            DB.AddParameter("@JobDescriptionPermissions", mThisOrder.JobDescriptionPermissions);
-            DB.AddParameter("@Active", mThisOrder.Active);
+            DB.AddParameter("@OrderTotal", mThisOrder.TotalCost);
+            DB.AddParameter("@Description", mThisOrder.Description);
+            DB.AddParameter("@TotalItems", mThisOrder.TotalItems);
+            DB.AddParameter("@DatePlaced", mThisOrder.DatePlaced);
+            DB.AddParameter("@Fulfilment", mThisOrder.Fulfillment_status);
             // executing the update Stored procedure
             DB.Execute("sproc_tblOrder_Update");
         }
 
         public void Delete()
         {
-            // deletes the record pointed to by ThisOrder
+            // deletes the record pointed to by mThisOrder
             // connecting to the database
             clsDataConnection DB = new clsDataConnection();
             // setting the parameters for the stored procedure
@@ -107,28 +107,28 @@ namespace ClassLibrary
             DB.Execute("sproc_tblOrder_Delete");
         }
 
-        public void ReportByEmpFullName(string EmpFullName)
+        public void ReportByDescr(string desc)
         {
-            // filters the records based on a full or partial Employee FullName
+            // filters the records based on a full or partial Order Description
             // connecting to the database
             clsDataConnection DB = new clsDataConnection();
             // sending the EmpFullName parameter to the database
-            DB.AddParameter("@EmpFullName", EmpFullName);
+            DB.AddParameter("@Description", desc);
             // executing the stored procedure
-            DB.Execute("sproc_tblOrder_FilterByEmpFullName");
+            DB.Execute("sproc_tblOrder_FilterByDescr");
             // populating the array list with the data table
             PopulateArray(DB);
         }
 
-        public void ReportJobDescriptionPermissions(string JobDescriptionPermissions)
+        public void ReportByFulfilmentStatus(bool fulfilled)
         {
-            // filters the records based on a full or partial Employee FullName
+            // filters the records based on a full or partial Order Description
             // connecting to the database
             clsDataConnection DB = new clsDataConnection();
             // sending the EmpFullName parameter to the database
-            DB.AddParameter("@JobDescriptionPermissions", JobDescriptionPermissions);
+            DB.AddParameter("@Fulfilment", fulfilled);
             // executing the stored procedure
-            DB.Execute("sproc_tblOrder_FilterByJobDescriptionPermissions");
+            DB.Execute("sproc_tblOrder_FilterByFulfilment");
             // populating the array list with the data table
             PopulateArray(DB);
         }
@@ -152,12 +152,12 @@ namespace ClassLibrary
                 // create a blank Order
                 clsOrder bOrder = new clsOrder();
                 // read in the fields from the current record
-                bOrder.Active = Convert.ToBoolean(DB.DataTable.Rows[Index]["Active"]);
+                bOrder.Fulfillment_status = Convert.ToBoolean(DB.DataTable.Rows[Index]["Fulfilment"]);
                 bOrder.ID = Convert.ToInt32(DB.DataTable.Rows[Index]["OrderId"]);
-                bOrder.EmpFullName = Convert.ToString(DB.DataTable.Rows[Index]["EmpFullName"]);
-                bOrder.JobDescriptionPermissions = Convert.ToString(DB.DataTable.Rows[Index]["JobDescriptionPermissions"]);
-                bOrder.Salary = Convert.ToDouble(DB.DataTable.Rows[Index]["Salary"]);
-                bOrder.DateHired = Convert.ToDateTime(DB.DataTable.Rows[Index]["DateHired"]);
+                bOrder.Description = Convert.ToString(DB.DataTable.Rows[Index]["Description"]);
+                bOrder.TotalItems = Convert.ToInt32(DB.DataTable.Rows[Index]["TotalItems"]);
+                bOrder.DatePlaced = Convert.ToDateTime(DB.DataTable.Rows[Index]["DatePlaced"]);
+                bOrder.TotalCost = Convert.ToDecimal(DB.DataTable.Rows[Index]["OrderTotal"]);
                 // adding the record to the private data memeber
                 mOrdersList.Add(bOrder);
                 // pointing at the next record
