@@ -136,7 +136,7 @@ namespace ClassLibrary
             }
         }
 
-        public string Validate(string description, string totalCost, string jobDescriptionPermissions, string datePlaced)
+        public string Validate(string description, string totalCost, string totalItems, string datePlaced)
         {
             // create a string variable to store the error message string
             String Error = "";
@@ -153,23 +153,17 @@ namespace ClassLibrary
                 Error += "The Description should not be blank";
             }
 
-            if (description.Length > 50)
+            if (description.Length >= 50)
             {
                 // Concatenate the error message string
                 Error += "The Employee Name you have entered is too long, Must be less Than 50 Char";
             }
 
             // JobDescriptionPermissions
-            if (jobDescriptionPermissions.Length == 0)
+            if (totalItems.Length == 0)
             {
                 // Concatenate the error message string
-                Error += "The Description should not be blank";
-            }
-
-            if (jobDescriptionPermissions.Length > 50)
-            {
-                // Concatenate the error message string
-                Error += "The Description you have entered is too long, Must be less Than 50 Char";
+                Error += "The order cannot be empty";
             }
 
             // DatePlaced
