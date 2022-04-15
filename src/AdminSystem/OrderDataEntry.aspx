@@ -13,13 +13,31 @@
             <asp:Button ID="btn_order_add" runat="server" Text="Enter Order" OnClick="btn_order_add_Click" Enabled="False" />
             <asp:Button ID="btn_order_list" runat="server" Text="List Orders" OnClick="btn_order_list_Click" />
             <asp:Button ID="btn_order_view" runat="server" Text="View Order" OnClick="btn_order_view_Click" />
+            <br />
         </div>
-        <div>
-            <asp:TextBox ID="TextBox5" runat="server"></asp:TextBox>
-        </div>
-        <asp:Label ID="Label1" runat="server" Text="Label"></asp:Label>
+        <asp:Label ID="lblOrderID" runat="server" Text="Order ID  " Width="250px"></asp:Label>
+        <asp:TextBox ID="intOrderID" runat="server" OnTextChanged="intOrderID_TextChanged"></asp:TextBox>
+        <p>
+            <asp:Label ID="lblOrderDesc" runat="server" Text="Order Description" Width="250px"></asp:Label>
+            <asp:TextBox ID="txtOrderDesc" runat="server" OnTextChanged="txtOrderDesc_TextChanged"></asp:TextBox>
+        </p>
+        <asp:Label ID="lblCost" runat="server" Text="Total Cost  " Width="250px"></asp:Label>
+        <asp:TextBox ID="dblCost" runat="server"></asp:TextBox>
+        <p>
+            <asp:Label ID="lblTotalItems" runat="server" Text="Total Items" Width="250px"></asp:Label>
+            <asp:TextBox ID="txtTotalItems" runat="server"></asp:TextBox>
+        </p>
+        <asp:Label ID="lblDatePlaced" runat="server" Text="Date Of Order placement" Width="250px"></asp:Label>
+        <asp:TextBox ID="dateTimePlaced" runat="server"></asp:TextBox>
         <br />
-        <asp:Label ID="Label2" runat="server" Text="Label"></asp:Label>
+        <br />
+        <asp:CheckBox ID="chkFulfilled" runat="server" Text="Fulfilled" />
+        <p>
+            <asp:Label ID="lblError" runat="server"></asp:Label>
+        </p>
+        <asp:Button ID="btnOK" runat="server" OnClick="btnOK_Click" Text="Okay" Width="57px" />
+        <asp:Button ID="btnCancel" runat="server" Text="Cancel" />
+        <asp:Button ID="btnFind" runat="server" OnClick="btnFind_Click" Text="Find" />
     </form>
 </body>
 </html>

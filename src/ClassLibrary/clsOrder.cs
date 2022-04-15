@@ -8,131 +8,270 @@ using System.Threading.Tasks;
 
 namespace ClassLibrary
 {
+
+    /*
+        var server = "v00egd00001l.lec-admin.dmu.ac.uk";
+        string db = "p2612742";
+        string user = "p2612742";
+        string pass = "Untitled5";
+    */
+
     public class clsOrder
     {
-        public static int IDCounter;
+        // Private fields
 
-        public readonly int ID;
+        /// <summary>
+        /// Order ID
+        /// </summary>
+        public int mID;
 
-#warning implement with class def for stock & inventory (Product Class)
-        private clsOrder[] Products;
-        
-        public readonly string Description;
+        /// <summary>
+        /// Order description
+        /// </summary>
+        private string mDescription;
 
-        private readonly int _totalItems;
+        /// <summary>
+        /// Total items in Order
+        /// </summary>
+        private int mTotalItems;
 
-        private bool _fulfillment_status = false;
+        /// <summary>
+        /// Total cost of the Order
+        /// </summary>
+        private decimal mTotalCost;
 
-        private readonly DateTime _datePlaced;
+        /// <summary>
+        /// Fulfilment status of the order - has it been processed?
+        /// </summary>
+        private bool mFulfillment_status = false;
 
+        /// <summary>
+        /// Date of when the order was placed
+        /// </summary>
+        private DateTime mDatePlaced;
 
-
-#warning implement with class def for stock & inventory (Product Class)
-        public clsOrder(string desc, clsOrder[] prods)
+        /// <summary>
+        /// Constructor for clsOrder object
+        /// </summary>
+        public clsOrder()
         {
-            ID = IDCounter;
-            Description = desc;
-            Products = prods;
-            _totalItems = prods.Length;
-            _datePlaced = DateTime.Now;
-            IDCounter++;
+
         }
 
-        public int GetID()
-        {
-            return ID;
-        }
-
-        public string GetDescription()
-        {
-            return Description;
-        }
-
-        public decimal TotalCost 
+        /// <summary>
+        /// public ID property with accessors
+        /// </summary>
+        public int ID
         {
             get
             {
-                decimal itemTotals = 0M;
-                try
-                {
-                    foreach (var item in this.Products)
-                    {
-                        itemTotals += item.TotalCost;
-                    }
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine(ex);
-                    Console.WriteLine("Setting default arbitrary value");
-                    decimal num = 234.23M;
-                    itemTotals = num;
-                }
-                
-
-                return itemTotals;
+                return mID;
             }
-        }
-
-
-
-        public int GetTotalItems()
-        {
-            return _totalItems;
-        }
-
-        
-
-        public DateTime GetDatePlaced()
-        {
-            return _datePlaced;
-        }
-
-
-        public bool GetFulfillment_status()
-        {
-            return _fulfillment_status;
-        }
-
-        public void CompleteOrder()
-        {
-            /*
-            foreach (Product prod in this.Products)
+            set
             {
-                if (prod.IsInStock == true)
-                {
-                    if (prod.Quantity <= Stock[prod.ProductID])
-                    {
-                        Stock[prod.ProductID] = -prod.Quantity;
-                        _fulfillment_status = true;
-                    }
-                    else
-                    {
-                        
-                    }
-                }
-                else
-                {
-                    _fulfillment_status = false;
-                }
+                mID = value;
+            }
+        }
+
+        /// <summary>
+        /// public Description property with accessors
+        /// </summary>
+        public string Description
+        {
+            get
+            {
+                return mDescription;
+            }
+            set
+            {
+                mDescription = value;
+            }
+        }
+
+        /// <summary>
+        /// public TotalCost property with accessors
+        /// </summary>
+        public decimal TotalCost
+        {
+            get
+            {
+                return mTotalCost;
+            }
+            set
+            {
+                mTotalCost = value;
+            }
+        }
+
+
+        /// <summary>
+        /// public TotalItems property with accessors
+        /// </summary>
+        public int TotalItems
+        {
+            get
+            {
+                return mTotalItems;
+            }
+            set
+            {
+                mTotalItems = value;
+            }
+        }
+
+        /// <summary>
+        /// public DatePlaced property with accessors
+        /// </summary>
+        public DateTime DatePlaced
+        {
+            get
+            {
+                return mDatePlaced;
+            }
+            set
+            {
+                mDatePlaced = value;
+            }
+        }
+
+
+        /// <summary>
+        /// public Fulfilment_status property with accessors
+        /// </summary>
+        public bool Fulfillment_status
+        {
+            get
+            {
+                return mFulfillment_status;
+            }
+            set
+            {
+                mFulfillment_status = value;
             }
 
-            */
-
-            _fulfillment_status = true;
-
         }
 
-        public void DeleteOrder(int ID)
+        /// <summary>
+        /// Searches database for specific order with matching ID
+        /// </summary>
+        /// <param name="OrderID"></param>
+        /// <returns></returns>
+        public bool Find(int OrderID)
         {
-            var server = "v00egd00001l.lec-admin.dmu.ac.uk";
-            string db = "p2612742";
-            string user = "p2612742";
-            string pass = "Untitled5";
-
-            string connectionString = "Data Source=" + server + "; Initial Catalog = " + db + "; User ID = " + user + "; Password = " + pass;
-
-
-            System.Data.SqlClient.SqlConnection SQLC = new System.Data.SqlClient.SqlConnection(connectionString);
+            // Initializes an instance of the database connection class
+            clsDataConnection DB = new clsDataConnection();
+            // Adding SQL parameter for OrderId to be searched
+            DB.AddParameter("@OrderId", OrderID);
+            // Execute the stored procedure
+            DB.Execute("sproc_tblStaff_FilterByEmployeeId");
+            // If a matching record is found (there should only be one exact match)
+            if (DB.Count == 1)
+            {
+                mID = Convert.ToInt32(DB.DataTable.Rows[0]["OrderId"]);
+                mDescription = Convert.ToString(DB.DataTable.Rows[0]["Description"]);
+                mTotalCost = Convert.ToDecimal(DB.DataTable.Rows[0]["OrderTotal"]);
+                mDatePlaced = Convert.ToDateTime(DB.DataTable.Rows[0]["DatePlaced"]);
+                mTotalItems = Convert.ToInt32(DB.DataTable.Rows[0]["TotalItems"]);
+                mFulfillment_status = Convert.ToBoolean(DB.DataTable.Rows[0]["Fulfilment"]);
+                // Return true if successful
+                return true;
+            }
+            // if a matching record is not found
+            else
+            {
+                // Return false indicating an issue
+                return false;
+            }
         }
+
+        /// <summary>
+        /// Validates the parameters passed to the method, with strings representing the different fields
+        /// </summary>
+        /// <param name="description"></param>
+        /// <param name="totalCost"></param>
+        /// <param name="totalItems"></param>
+        /// <param name="datePlaced"></param>
+        /// <returns>Error message based on the output</returns>
+        public string Validate(string description, string totalCost, string totalItems, string datePlaced)
+        {
+            // create a string variable to store the error message string
+            string Error = "";
+            // temporatry variable to store date values
+            DateTime TempDate;
+            // temporary variable to store the salary
+            Decimal TempCost;
+
+            // Description
+            // if the description field is blank
+            if (description.Length == 0)
+            {
+                // Concatenate the error message string
+                Error += "The Description should not be blank\n";
+            }
+
+            if (description.Length >= 50)
+            {
+                // Concatenate the error message string
+                Error += "The Employee Name you have entered is too long, Must be less Than 50 Char\n";
+            }
+
+            // JobDescriptionPermissions
+            if (totalItems.Length == 0)
+            {
+                // Concatenate the error message string
+                Error += "The order cannot be empty\n";
+            }
+
+            // DatePlaced
+            try
+            {
+
+                //create a temp variable
+                TempDate = Convert.ToDateTime(datePlaced);
+                if (TempDate < DateTime.Now.Date)
+                {
+                    // Concatenate the error message string
+                    Error += "Invalid past date\n";
+                }
+
+                if (TempDate > DateTime.Now.Date)
+                {
+                    // Concatenate the error message string
+                    Error += "Invalid future date\n";
+                }
+            }
+            catch
+            {
+                // Concatenate the error message string
+                Error += "The Date Was Not A Valid Date\n";
+            }
+
+            // TotalCost
+            try
+            {
+
+                // Create a temporary variable
+                TempCost = Convert.ToDecimal(totalCost);
+                if (TempCost < 0)
+                {
+                    // Concatenate the error message string
+                    Error += "The order's total cost cannot be below 0\n";
+                }
+
+                if (TempCost > 50000)
+                {
+                    // Concatenate the error message string 
+                    Error += "The order's total cost cannot exceed 50000\n";
+                }
+            }
+            catch
+            {
+                // Concatenate the error message string
+                Error += "The data entered was not decimal\n";
+            }
+            // return the error message string
+            return Error;
+        }
+
     }
 }
