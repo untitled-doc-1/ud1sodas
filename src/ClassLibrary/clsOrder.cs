@@ -19,11 +19,35 @@ namespace ClassLibrary
     public class clsOrder
     {
         // Private fields
+
+        /// <summary>
+        /// Order ID
+        /// </summary>
         public int mID;
+
+        /// <summary>
+        /// Order description
+        /// </summary>
         private string mDescription;
+
+        /// <summary>
+        /// Total items in Order
+        /// </summary>
         private int mTotalItems;
+
+        /// <summary>
+        /// Total cost of the Order
+        /// </summary>
         private decimal mTotalCost;
+
+        /// <summary>
+        /// Fulfilment status of the order - has it been processed?
+        /// </summary>
         private bool mFulfillment_status = false;
+
+        /// <summary>
+        /// Date of when the order was placed
+        /// </summary>
         private DateTime mDatePlaced;
 
         /// <summary>
@@ -134,13 +158,13 @@ namespace ClassLibrary
         /// <returns></returns>
         public bool Find(int OrderID)
         {
-            // create an instance of the database connection
+            // Initializes an instance of the database connection class
             clsDataConnection DB = new clsDataConnection();
-            // adding the parameter for EmplyeeId to search for
+            // Adding SQL parameter for OrderId to be searched
             DB.AddParameter("@OrderId", OrderID);
-            // execute the stored procedure
+            // Execute the stored procedure
             DB.Execute("sproc_tblStaff_FilterByEmployeeId");
-            // if a matching record is found (there should only be one exact match)
+            // If a matching record is found (there should only be one exact match)
             if (DB.Count == 1)
             {
                 mID = Convert.ToInt32(DB.DataTable.Rows[0]["OrderId"]);
@@ -149,13 +173,13 @@ namespace ClassLibrary
                 mDatePlaced = Convert.ToDateTime(DB.DataTable.Rows[0]["DatePlaced"]);
                 mTotalItems = Convert.ToInt32(DB.DataTable.Rows[0]["TotalItems"]);
                 mFulfillment_status = Convert.ToBoolean(DB.DataTable.Rows[0]["Fulfilment"]);
-                // return true if successful
+                // Return true if successful
                 return true;
             }
             // if a matching record is not found
             else
             {
-                // return false indicating an issue
+                // Return false indicating an issue
                 return false;
             }
         }
@@ -171,7 +195,7 @@ namespace ClassLibrary
         public string Validate(string description, string totalCost, string totalItems, string datePlaced)
         {
             // create a string variable to store the error message string
-            String Error = "";
+            string Error = "";
             // temporatry variable to store date values
             DateTime TempDate;
             // temporary variable to store the salary
