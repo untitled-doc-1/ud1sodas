@@ -15,23 +15,23 @@
             <asp:Button ID="btn_order_view" runat="server" Text="View Order" OnClick="btn_order_view_Click" />
             <br />
         </div>
-        <asp:Label ID="lblOrderID" runat="server" Text="Order ID  " Width="250px"></asp:Label>
+        <asp:Label ID="lblOrderID" runat="server" Text="Order ID" Width="250px"></asp:Label>
         <asp:TextBox ID="intOrderID" runat="server" OnTextChanged="intOrderID_TextChanged"></asp:TextBox>
         <p>
             <asp:Label ID="lblOrderDesc" runat="server" Text="Order Description" Width="250px"></asp:Label>
             <asp:TextBox ID="txtOrderDesc" runat="server" OnTextChanged="txtOrderDesc_TextChanged"></asp:TextBox>
         </p>
-        <asp:Label ID="lblCost" runat="server" Text="Total Cost  " Width="250px"></asp:Label>
+        <asp:Label ID="lblCost" runat="server" Text="Total Cost" Width="250px"></asp:Label>
         <asp:TextBox ID="dblCost" runat="server"></asp:TextBox>
         <p>
             <asp:Label ID="lblTotalItems" runat="server" Text="Total Items" Width="250px"></asp:Label>
             <asp:TextBox ID="txtTotalItems" runat="server"></asp:TextBox>
         </p>
-        <asp:Label ID="lblDatePlaced" runat="server" Text="Date Of Order placement" Width="250px"></asp:Label>
-        <asp:TextBox ID="dateTimePlaced" runat="server"></asp:TextBox>
+        <asp:Label ID="lblDatePlaced" runat="server" Text="Date of order being placed" Width="250px"></asp:Label>
+        <asp:TextBox ID="datePlaced" runat="server"></asp:TextBox>
         <br />
         <br />
-        <asp:CheckBox ID="chkFulfilled" runat="server" Text="Fulfilled" />
+        <asp:CheckBox ID="chkFulfilled" runat="server" Text="Fulfilled?" />
         <p>
             <asp:Label ID="lblError" runat="server"></asp:Label>
         </p>
