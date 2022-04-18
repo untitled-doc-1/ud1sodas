@@ -14,6 +14,7 @@
             <asp:Button ID="btn_order_list" runat="server" Text="List Orders" OnClick="btn_order_list_Click" />
             <asp:Button ID="btn_order_view" runat="server" Text="View Order" OnClick="btn_order_view_Click" />
             <br />
+            <br />
         </div>
         <asp:Label ID="lblOrderID" runat="server" Text="Order ID" Width="250px"></asp:Label>
         <asp:TextBox ID="intOrderID" runat="server" OnTextChanged="intOrderID_TextChanged"></asp:TextBox>
@@ -28,7 +29,7 @@
             <asp:TextBox ID="txtTotalItems" runat="server"></asp:TextBox>
         </p>
         <asp:Label ID="lblDatePlaced" runat="server" Text="Date of order being placed" Width="250px"></asp:Label>
-        <asp:TextBox ID="datePlaced" runat="server"></asp:TextBox>
+        <asp:TextBox ID="txtDatePlaced" runat="server" OnTextChanged="datePlaced_TextChanged"></asp:TextBox>
         <br />
         <br />
         <asp:CheckBox ID="chkFulfilled" runat="server" Text="Fulfilled?" />
