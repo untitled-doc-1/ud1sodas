@@ -1,4 +1,4 @@
-﻿using System;
+﻿ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http.Headers;
@@ -23,7 +23,7 @@ namespace ClassLibrary
         /// <summary>
         /// Order ID
         /// </summary>
-        public int mID;
+        private int mID;
 
         /// <summary>
         /// Order description
@@ -43,7 +43,7 @@ namespace ClassLibrary
         /// <summary>
         /// Fulfilment status of the order - has it been processed?
         /// </summary>
-        private bool mFulfillment_status = false;
+        private bool mFulfillment_status;
 
         /// <summary>
         /// Date of when the order was placed
@@ -160,18 +160,18 @@ namespace ClassLibrary
         {
             // Initializes an instance of the database connection class
             clsDataConnection DB = new clsDataConnection();
-            // Adding SQL parameter for OrderId to be searched
-            DB.AddParameter("@OrderId", OrderID);
+            // Adding SQL parameter for OrderID to be searched
+            DB.AddParameter("@OrderID", OrderID);
             // Execute the stored procedure
-            DB.Execute("sproc_tblStaff_FilterByEmployeeId");
+            DB.Execute("sproc_tblOrder_FilterByOrderID");
             // If a matching record is found (there should only be one exact match)
             if (DB.Count == 1)
             {
-                mID = Convert.ToInt32(DB.DataTable.Rows[0]["OrderId"]);
+                mID = Convert.ToInt32(DB.DataTable.Rows[0]["OrderID"]);
                 mDescription = Convert.ToString(DB.DataTable.Rows[0]["Description"]);
-                mTotalCost = Convert.ToDecimal(DB.DataTable.Rows[0]["OrderTotal"]);
-                mDatePlaced = Convert.ToDateTime(DB.DataTable.Rows[0]["DatePlaced"]);
                 mTotalItems = Convert.ToInt32(DB.DataTable.Rows[0]["TotalItems"]);
+                mTotalCost = Convert.ToDecimal(DB.DataTable.Rows[0]["TotalCost"]);
+                mDatePlaced = Convert.ToDateTime(DB.DataTable.Rows[0]["DatePlaced"]);
                 mFulfillment_status = Convert.ToBoolean(DB.DataTable.Rows[0]["Fulfilment"]);
                 // Return true if successful
                 return true;
@@ -192,18 +192,18 @@ namespace ClassLibrary
         /// <param name="totalItems"></param>
         /// <param name="datePlaced"></param>
         /// <returns>Error message based on the output</returns>
-        public string Validate(string description, string totalCost, string totalItems, string datePlaced)
+        public static string Validate(string description, string totalCost, string totalItems, string datePlaced)
         {
             // create a string variable to store the error message string
             string Error = "";
-            // temporatry variable to store date values
+            // temporary variable to store date values
             DateTime TempDate;
             // temporary variable to store the salary
             Decimal TempCost;
 
             // Description
             // if the description field is blank
-            if (description.Length == 0)
+            if (description == "")
             {
                 // Concatenate the error message string
                 Error += "The Description should not be blank\n";
@@ -212,29 +212,37 @@ namespace ClassLibrary
             if (description.Length >= 50)
             {
                 // Concatenate the error message string
-                Error += "The Employee Name you have entered is too long, Must be less Than 50 Char\n";
+                Error += "The description you have entered is too long, Must be less Than 50 characters\n";
             }
 
-            // JobDescriptionPermissions
-            if (totalItems.Length == 0)
+            try
             {
-                // Concatenate the error message string
-                Error += "The order cannot be empty\n";
+                // Total Items
+                if (Int32.Parse(totalItems) <= 0)
+                {
+                    // Concatenate the error message string
+                    Error += "The order must contain at least 1 item\n";
+                }
             }
+            catch
+            {
+                Error += "Error while parsing the order quantity. Please enter a valid number\n";
+            }
+            
 
             // DatePlaced
             try
             {
 
-                //create a temp variable
-                TempDate = Convert.ToDateTime(datePlaced);
-                if (TempDate < DateTime.Now.Date)
+                //create a temporary variable to hold the order date
+                TempDate = Convert.ToDateTime(datePlaced).Date;
+                if (TempDate.Date < DateTime.Now.Date)
                 {
                     // Concatenate the error message string
                     Error += "Invalid past date\n";
                 }
 
-                if (TempDate > DateTime.Now.Date)
+                if (TempDate.Date > DateTime.Now.Date)
                 {
                     // Concatenate the error message string
                     Error += "Invalid future date\n";
@@ -252,7 +260,7 @@ namespace ClassLibrary
 
                 // Create a temporary variable
                 TempCost = Convert.ToDecimal(totalCost);
-                if (TempCost < 0)
+                if (TempCost <= 0)
                 {
                     // Concatenate the error message string
                     Error += "The order's total cost cannot be below 0\n";

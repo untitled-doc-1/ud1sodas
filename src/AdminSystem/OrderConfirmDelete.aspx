@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="OrderConfirmDelete.aspx.cs" Inherits="_1_ConfirmDelete" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="OrderConfirmDelete.aspx.cs" Inherits="_Order_ConfirmDelete" %>
 
 <!DOCTYPE html>
 
@@ -15,11 +15,10 @@
             <asp:Button ID="btn_order_view" runat="server" Text="View Order" OnClick="btn_order_view_Click" />
         </div>
         <div>
-            Order ID to delete:
-            <asp:TextBox ID="TextBox5" runat="server"></asp:TextBox>
+            Are you sure you want to delete this record?<br />
             <br />
-            Click OK to confirm deletion:
-            <asp:Button ID="OKDelete" runat="server" OnClick="Button1_Click" Text="OK!" />
+            <asp:Button ID="btnYes" runat="server" OnClick="btnYes_Click" Text="Yes" />
+            <asp:Button ID="btnNo" runat="server" OnClick="btnNo_Click" Text="No" />
         </div>
     </form>
 </body>
