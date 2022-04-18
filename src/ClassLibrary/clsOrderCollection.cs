@@ -91,9 +91,9 @@ namespace ClassLibrary
             // connecting to the database 
             clsDataConnection DB = new clsDataConnection();
             // setting the parameters for the stored procedure
-            DB.AddParameter("@OrderTotal", mThisOrder.TotalCost);
             DB.AddParameter("@Description", mThisOrder.Description);
             DB.AddParameter("@TotalItems", mThisOrder.TotalItems);
+            DB.AddParameter("@TotalCost", mThisOrder.TotalCost);
             DB.AddParameter("@DatePlaced", mThisOrder.DatePlaced);
             DB.AddParameter("@Fulfilment", mThisOrder.Fulfillment_status);
 
@@ -110,10 +110,10 @@ namespace ClassLibrary
             // connecting to the database
             clsDataConnection DB = new clsDataConnection();
             // Setting the parameters for the stored procedure
-            DB.AddParameter("@OrderId", mThisOrder.ID);
-            DB.AddParameter("@OrderTotal", mThisOrder.TotalCost);
+            DB.AddParameter("@OrderID", mThisOrder.ID);
             DB.AddParameter("@Description", mThisOrder.Description);
             DB.AddParameter("@TotalItems", mThisOrder.TotalItems);
+            DB.AddParameter("@TotalCost", mThisOrder.TotalCost);
             DB.AddParameter("@DatePlaced", mThisOrder.DatePlaced);
             DB.AddParameter("@Fulfilment", mThisOrder.Fulfillment_status);
             // executing the update Stored procedure
@@ -129,7 +129,7 @@ namespace ClassLibrary
             // connecting to the database
             clsDataConnection DB = new clsDataConnection();
             // setting the parameters for the stored procedure
-            DB.AddParameter("@OrderId", mThisOrder.ID);
+            DB.AddParameter("@OrderID", mThisOrder.ID);
             // executing the stored procedure
             DB.Execute("sproc_tblOrder_Delete");
         }
@@ -190,12 +190,13 @@ namespace ClassLibrary
                 // create a blank Order
                 clsOrder bOrder = new clsOrder();
                 // read in the fields from the current record
-                bOrder.Fulfillment_status = Convert.ToBoolean(DB.DataTable.Rows[Index]["Fulfilment"]);
-                bOrder.ID = Convert.ToInt32(DB.DataTable.Rows[Index]["OrderId"]);
+                bOrder.ID = Convert.ToInt32(DB.DataTable.Rows[Index]["OrderID"]);
                 bOrder.Description = Convert.ToString(DB.DataTable.Rows[Index]["Description"]);
                 bOrder.TotalItems = Convert.ToInt32(DB.DataTable.Rows[Index]["TotalItems"]);
+                bOrder.TotalCost = Convert.ToDecimal(DB.DataTable.Rows[Index]["TotalCost"]);
                 bOrder.DatePlaced = Convert.ToDateTime(DB.DataTable.Rows[Index]["DatePlaced"]);
-                bOrder.TotalCost = Convert.ToDecimal(DB.DataTable.Rows[Index]["OrderTotal"]);
+                bOrder.Fulfillment_status = Convert.ToBoolean(DB.DataTable.Rows[Index]["Fulfilment"]);
+
                 // adding the record to the private data memeber
                 mOrdersList.Add(bOrder);
                 // pointing at the next record
