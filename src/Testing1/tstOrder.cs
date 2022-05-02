@@ -9,13 +9,12 @@ namespace tstOrder
     {
         /*
          *  
-OrderID		    Int		    Primary Key
-OrderTotal		Double
-Description		String
-TotalItems		Int
-DatePlaced		Date
-Fulfilled		Bool
- 
+         *       OrderID		Int		    Primary Key
+         *       OrderTotal		Double
+         *       Description	String
+         *       TotalItems		Int
+         *       DatePlaced		Date
+         *       Fulfilled		Bool
          * 
          * 
          */
