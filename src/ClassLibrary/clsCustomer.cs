@@ -154,6 +154,11 @@ namespace ClassLibrary
             }
         }
 
+        public string ValidateCurrentlySetData()
+        {
+            return Validate(mFullName, mEmail, mPasswordHash, mAddressLine1, mPhoneNumber, mDisabled, mSignedUpDate);
+        }
+
         public string Validate(string customerName, string customerEmail, string passwordHash, string addressLine1, string phoneNumber, bool disabled, DateTime signedUpDate)
         {
             // validation parameters

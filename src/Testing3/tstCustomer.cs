@@ -2,7 +2,7 @@
 using System;
 using ClassLibrary;
 
-namespace Testing3
+namespace tstCustomer
 {
     [TestClass]
     public class tstCustomer
@@ -32,7 +32,7 @@ namespace Testing3
         [DataRow("AddressLine1", "Test Me!")]
         [DataRow("PhoneNumber", "01110001233")]
         [DataRow("Disabled", false)]
-        public void Customer_Find_FindsProperties(string property, object value)
+        public void Find_IdThree_FindsProperties(string property, object value)
         {
             // arrange
             var customer = new clsCustomer();
@@ -67,7 +67,7 @@ namespace Testing3
 
         [TestMethod]
 
-        public void Customer_Find_ReturnsTrue()
+        public void Find_IdThree_ReturnsTrue()
         {
             // arrange
             var customer = new clsCustomer();
@@ -78,7 +78,7 @@ namespace Testing3
         }
 
         [TestMethod]
-        public void Customer_ValidateWithCorrectData_ProducesEmptyString()
+        public void Validate_CorrectData_ProducesEmptyString()
         {
             // arrange
             var customerName = "Testy McTestface";
@@ -98,7 +98,7 @@ namespace Testing3
         }
 
         [TestMethod]
-        public void Customer_ValidateWithIncorrectPhoneNumber_ProducesErrorString()
+        public void Validate_IncorrectPhoneNumber_ProducesErrorString()
         {
             // arrange
             var customerName = "Testy McTestface";
@@ -119,7 +119,7 @@ namespace Testing3
         }
 
         [TestMethod]
-        public void Customer_ValidateWithIncorrectPhoneNumberAndEmail_ProducesErrorString()
+        public void Validate_IncorrectPhoneNumberAndEmail_ProducesErrorString()
         {
             // arrange
             var customerName = "Testy McTestface";
@@ -142,7 +142,7 @@ namespace Testing3
         }
 
         [TestMethod]
-        public void Customer_ValidateWithEmptyStrings_ProducesErrorString()
+        public void Validate_EmptyStrings_ProducesErrorString()
         {
             // arrange
             var customerName = "";

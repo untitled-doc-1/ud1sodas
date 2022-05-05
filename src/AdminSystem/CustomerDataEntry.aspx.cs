@@ -52,6 +52,8 @@ public partial class _1_DataEntry : System.Web.UI.Page
         var errorMessage = customer.Validate(customerName, customerEmail, password, addressLine1, phoneNumber, disabled, selectedDate);
         if (errorMessage == String.Empty)
         {
+            var customerCollection = new clsCustomerCollection();
+
             customer.AddressLine1 = addressLine1;
             customer.Disabled = disabled;
             customer.Email = customerEmail;
@@ -60,11 +62,11 @@ public partial class _1_DataEntry : System.Web.UI.Page
             customer.PhoneNumber = phoneNumber;
             customer.SignedUpDate = selectedDate;
 
-            // set customer in session
-            Session["ACustomer"] = customer;
-
-            // navigate to viewer page
-            Response.Redirect("CustomerViewer.aspx");
+            customerCollection.ThisCustomer = customer;
+            customerCollection.Add();
+                        
+            // navigate to list page
+            Response.Redirect("CustomerList.aspx");
         }
         else
         {

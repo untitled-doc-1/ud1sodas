@@ -47,6 +47,7 @@ namespace ClassLibrary
         public clsCustomerCollection()
         {
             mCustomerList = new List<clsCustomer>();
+            mThisCustomer = new clsCustomer();
 
             // never ever put data fetching logic in a constructor
             var db = new clsDataConnection();
@@ -64,6 +65,24 @@ namespace ClassLibrary
                 customer.Disabled = Convert.ToBoolean(db.DataTable.Rows[i]["Disabled"]);
                 mCustomerList.Add(customer);
             }
+        }
+
+        public int Add()
+        {
+            if (ThisCustomer.ValidateCurrentlySetData() != String.Empty)
+            {
+                return 0;
+            }
+
+            var db = new clsDataConnection();
+            db.AddParameter("@FullName", mThisCustomer.FullName);
+            db.AddParameter("@Email", mThisCustomer.Email);
+            db.AddParameter("@PasswordHash", mThisCustomer.PasswordHash);
+            db.AddParameter("@SignedUpDate", mThisCustomer.SignedUpDate);
+            db.AddParameter("@PhoneNumber", mThisCustomer.PhoneNumber);
+            db.AddParameter("@AddressLine1", mThisCustomer.AddressLine1);
+            db.AddParameter("@Disabled", mThisCustomer.Disabled);
+            return db.Execute("sproc_tblCustomer_Add");
         }
     }
 }
