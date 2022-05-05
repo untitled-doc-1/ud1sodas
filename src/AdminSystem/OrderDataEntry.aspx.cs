@@ -73,7 +73,7 @@ public partial class _Order_DataEntry : System.Web.UI.Page
         // variable to store any error message
         string Error = "";
         //validate the data 
-        Error = clsOrder.Validate(desc, totalCost, totalItems, DatePlaced);
+        Error = aOrder.Validate(desc, totalCost, totalItems, DatePlaced);
         if (Error == "")
         {
             try

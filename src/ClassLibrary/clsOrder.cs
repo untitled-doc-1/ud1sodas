@@ -192,7 +192,7 @@ namespace ClassLibrary
         /// <param name="totalItems"></param>
         /// <param name="datePlaced"></param>
         /// <returns>Error message based on the output</returns>
-        public static string Validate(string description, string totalCost, string totalItems, string datePlaced)
+        public string Validate(string description, string totalCost, string totalItems, string datePlaced)
         {
             // create a string variable to store the error message string
             string Error = "";
@@ -200,6 +200,8 @@ namespace ClassLibrary
             DateTime TempDate;
             // temporary variable to store the salary
             Decimal TempCost;
+            // temporary variable to store the total cost
+            Int32 TempTotal;
 
             // Description
             // if the description field is blank
@@ -209,10 +211,10 @@ namespace ClassLibrary
                 Error += "The Description should not be blank\n";
             }
 
-            if (description.Length >= 50)
+            if (description.Length > 50)
             {
                 // Concatenate the error message string
-                Error += "The description you have entered is too long, Must be less Than 50 characters\n";
+                Error += "The description you have entered is too long, Must be 50 characters or less\n";
             }
 
             try
@@ -263,7 +265,7 @@ namespace ClassLibrary
                 if (TempCost <= 0)
                 {
                     // Concatenate the error message string
-                    Error += "The order's total cost cannot be below 0\n";
+                    Error += "The order's total cost cannot be 0 or below\n";
                 }
 
                 if (TempCost > 50000)
@@ -277,6 +279,25 @@ namespace ClassLibrary
                 // Concatenate the error message string
                 Error += "The data entered was not decimal\n";
             }
+
+            // Total Items
+            try
+            {
+                TempTotal = Convert.ToInt32(totalItems);
+                if (TempTotal <= 0)
+                {
+                    Error += "The item quantity cannot be zero or below";
+                }
+                if (TempTotal > 1000)
+                {
+                    Error += "The basket can only hold 1000 items maximum";
+                }
+            }
+            catch
+            {
+                Error += "Invalid data type for item quantity. Please ensure you are entering a whole number";
+            }
+
             // return the error message string
             return Error;
         }
