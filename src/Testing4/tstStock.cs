@@ -10,9 +10,10 @@ namespace Testing4
         [TestMethod]
         public void InstanceOK()
         {
+            //creation of class instance
+            var AStock = new clsStock();
 
-            clsStock AStock = new clsStock();
-
+            //existance testing
             Assert.IsNotNull(AStock);
 
 
@@ -22,14 +23,16 @@ namespace Testing4
 
         public void ActivePropertyOK()
         {
+            //creation of class instance
+            var AStock = new clsStock();
 
-            clsStock AStock = new clsStock();
+            //data test
+            var TestData = true;
 
-            Boolean TestData = true;
-
+            //data assignment
             AStock.Active = TestData;
-            //Assign Data
 
+            //test if both values are equal
             Assert.AreEqual(AStock.Active, TestData);
 
 
@@ -40,25 +43,87 @@ namespace Testing4
 
         public void DateArrived()
         {
-            clsStock AStock = new clsStock();
+            //creation of class instance
+            var AStock = new clsStock();
 
-            DateTime TestData = DateTime.Now.Date;
+            //data test
+            var TestData = DateTime.Now.Date;
 
+            //data assignment
             AStock.DateAdded = TestData;
 
+            //test if both values are equal
             Assert.AreEqual(AStock.DateAdded, TestData);
 
 
         }
 
+        [TestMethod]
+
+        public void StockAvailability()
+        {
+            //creation of class instance
+            var AStock = new clsStock();
+
+            //data test
+            var TestData = true;
+
+            AStock.StockAvailability = TestData;
+
+            Assert.AreEqual(AStock.StockAvailability, TestData);
+
+
+        }
+
+
+        [TestMethod]
+
+        public void StockDescription()
+        {
+            //creation of class instance
+            var AStock = new clsStock();
+
+            //data test
+            var TestData = "";
+
+            AStock.StockDescription = TestData;
+
+            Assert.AreEqual(AStock.StockDescription, TestData);
 
 
 
+        }
+
+        [TestMethod]
+
+        public void StockSupplier()
+        {
+            //creation of class instance
+            var AStock = new clsStock();
+
+            var TestData = "";
+
+            AStock.StockSupplier = TestData;
+
+            Assert.AreEqual(AStock.StockSupplier, TestData);
 
 
+        }
+
+        [TestMethod]
+
+        public void StockID()
+        {
+            //creatiion of class instance
+            var AStock = new clsStock();
+
+            var TestData = 1;
+
+            AStock.StockID = TestData;
+
+            Assert.AreEqual(AStock.StockID, TestData);
 
 
-
-
+        }
     }
 }
