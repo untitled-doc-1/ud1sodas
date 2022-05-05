@@ -104,5 +104,12 @@ namespace ClassLibrary
             db.AddParameter("@Disabled", mThisCustomer.Disabled);
             db.Execute("sproc_tblCustomer_Update");
         }
+
+        public void Delete()
+        {
+            var db = new clsDataConnection();
+            db.AddParameter("@Id", mThisCustomer.Id);
+            db.Execute("sproc_tblCustomer_Delete");
+        }
     }
 }

@@ -153,6 +153,32 @@ namespace tstCustomer
             Assert.AreEqual(customer, customerCollection.ThisCustomer);
         }
 
+        [TestMethod]
+        public void Delete_CreateThenDeleteCustomer_DeletesCustomer()
+        {
+            // arrange
+            var customer = new clsCustomer();
+            customer.FullName = "Testy McTestface - Delete test!";
+            customer.Email = "testy@mctestface.com";
+            customer.PasswordHash = "b1ffb6b5d22cd9f210fbc8b7fdaf0e19";
+            customer.SignedUpDate = DateTime.UtcNow;
+            customer.AddressLine1 = "2 McTestFace Road";
+            customer.Disabled = false;
+            customer.PhoneNumber = "01161230987";
+            var customerCollection = new clsCustomerCollection();
+            customerCollection.ThisCustomer = customer;
+
+            var pk = customerCollection.Add();
+            customer.Id = pk;
+
+            // act
+            customerCollection.Delete();
+
+            // assert
+            var found = customerCollection.ThisCustomer.Find(pk);
+            Assert.IsFalse(found);
+        }
+
         //[TestMethod]
         //public void CustomerCollection_InitializeWithContentFromDatabase_ReturnsThreeCustomers()
         //{
