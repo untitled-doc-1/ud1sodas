@@ -37,20 +37,38 @@ public partial class _1_DataEntry : System.Web.UI.Page
     }
 
 
-protected void btnOK_Click(object sender, EventArgs e)
+    protected void btnOK_Click(object sender, EventArgs e)
     {
         var customer = new clsCustomer();
-        customer.FullName = textCustomerName.Text;
-        customer.Email = textEmail.Text;
-        
-        // hash and salt this later
-        customer.PasswordHash = textPassword.Text;
-        // customer.PhoneNumber = Int32.Parse(lblPhoneNumber.Text);
+        var customerName = textCustomerName.Text;
+        var customerEmail = textEmail.Text;
+        var password = textPassword.Text;
+        var addressLine1 = textAddressLine1.Text;
+        var phoneNumber = textPhoneNumer.Text;
+        var disabled = chkActive.Checked;
+        var selectedDate = Calendar1.SelectedDate;
 
-        Session["ACustomer"] = customer;
 
+        var errorMessage = customer.Validate(customerName, customerEmail, password, addressLine1, phoneNumber, disabled, selectedDate);
+        if (errorMessage == String.Empty)
+        {
+            customer.AddressLine1 = addressLine1;
+            customer.Disabled = disabled;
+            customer.Email = customerEmail;
+            customer.FullName = customerName;
+            customer.PasswordHash = password;
+            customer.PhoneNumber = phoneNumber;
+            customer.SignedUpDate = selectedDate;
 
-        // navigate to viewer page
-        Response.Redirect("CustomerViewer.aspx");
+            // set customer in session
+            Session["ACustomer"] = customer;
+
+            // navigate to viewer page
+            Response.Redirect("CustomerViewer.aspx");
+        }
+        else
+        {
+            lblError.Text = errorMessage;
+        }
     }
 }

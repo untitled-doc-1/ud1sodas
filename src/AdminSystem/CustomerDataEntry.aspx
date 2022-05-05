@@ -8,7 +8,7 @@
 </head>
 <body style="height: 782px">
     <form id="form1" runat="server">
-        <div>
+        <div style="height: 771px">
         <asp:Label ID="lblCustomerID" runat="server" Text="Customer ID"></asp:Label>
         <p>
             <asp:TextBox ID="textCustomerId" runat="server"></asp:TextBox>
@@ -40,8 +40,14 @@
         <asp:Calendar ID="Calendar1" runat="server"></asp:Calendar>
         <asp:CheckBox ID="chkActive" runat="server" OnCheckedChanged="CheckBox1_CheckedChanged" Text="Disabled" />
 
+        </div>
+
+        <asp:Label ID="lblError" runat="server" Text="Error Message"></asp:Label>
+
+        <p>
         <asp:Button ID="btnOK" runat="server" Text="OK" OnClick="btnOK_Click" />
         <asp:Button ID="btnCancel" runat="server" Text="Cancel" />
+        </p>
     </form>
 </body>
 </html>
