@@ -71,7 +71,7 @@ namespace ClassLibrary
         {
             if (ThisCustomer.ValidateCurrentlySetData() != String.Empty)
             {
-                return 0;
+                throw new ApplicationException("The customer was not validated prior to adding.");
             }
 
             var db = new clsDataConnection();
@@ -83,6 +83,25 @@ namespace ClassLibrary
             db.AddParameter("@AddressLine1", mThisCustomer.AddressLine1);
             db.AddParameter("@Disabled", mThisCustomer.Disabled);
             return db.Execute("sproc_tblCustomer_Add");
+        }
+
+        public void Update()
+        {
+            if (ThisCustomer.ValidateCurrentlySetData() != String.Empty)
+            {
+                throw new ApplicationException("The customer was not validated prior to updating.");
+            }
+
+            var db = new clsDataConnection();
+            db.AddParameter("@Id", mThisCustomer.Id);
+            db.AddParameter("@FullName", mThisCustomer.FullName);
+            db.AddParameter("@Email", mThisCustomer.Email);
+            db.AddParameter("@PasswordHash", mThisCustomer.PasswordHash);
+            db.AddParameter("@SignedUpDate", mThisCustomer.SignedUpDate);
+            db.AddParameter("@PhoneNumber", mThisCustomer.PhoneNumber);
+            db.AddParameter("@AddressLine1", mThisCustomer.AddressLine1);
+            db.AddParameter("@Disabled", mThisCustomer.Disabled);
+            db.Execute("sproc_tblCustomer_Update");
         }
     }
 }
