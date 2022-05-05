@@ -6,10 +6,14 @@
 <head runat="server">
     <title></title>
 </head>
-<body style="height: 659px">
+<body style="height: 782px">
     <form id="form1" runat="server">
         <div>
-        </div>
+        <asp:Label ID="lblCustomerID" runat="server" Text="Customer ID"></asp:Label>
+        <p>
+            <asp:TextBox ID="textCustomerId" runat="server"></asp:TextBox>
+            <asp:Button ID="btnFindCustomer" runat="server" Text="Find" OnClick="btnFindCustomer_Click" />
+        </p>
         <asp:Label ID="lblCustomerName" runat="server" Text="Full Name"></asp:Label>
         <p>
             <asp:TextBox ID="textCustomerName" runat="server"></asp:TextBox>
@@ -24,9 +28,9 @@
             <asp:TextBox ID="textPassword" runat="server"></asp:TextBox>
         </p>
 
-        <asp:Label ID="LblAddress" runat="server" Text="Address"></asp:Label>
+        <asp:Label ID="LblAddressLine1" runat="server" Text="AddressLine1"></asp:Label>
         <p>
-            <asp:TextBox ID="textAddress" runat="server"></asp:TextBox>
+            <asp:TextBox ID="textAddressLine1" runat="server"></asp:TextBox>
         </p>
         <asp:Label ID="lblPhoneNumber" runat="server" Text="Phone Number"></asp:Label>
         <p>

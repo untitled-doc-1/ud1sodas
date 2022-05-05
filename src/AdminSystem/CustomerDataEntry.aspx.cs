@@ -18,9 +18,28 @@ public partial class _1_DataEntry : System.Web.UI.Page
 
     }
 
-    protected void btnOK_Click(object sender, EventArgs e)
+    protected void btnFindCustomer_Click(object sender, EventArgs e)
     {
-        var customer = new Customer();
+        var customer = new clsCustomer();
+        var customerId = Convert.ToInt32(textCustomerId.Text);
+        var customerFound = customer.Find(customerId);
+        if (customerFound)
+        {
+            textCustomerName.Text = customer.FullName;
+            textEmail.Text = customer.Email;
+            textAddressLine1.Text = customer.AddressLine1;
+            textPassword.Text = customer.PasswordHash;
+            textPhoneNumer.Text = customer.PhoneNumber;
+            chkActive.Checked = customer.Disabled;
+            Calendar1.SelectedDate = customer.SignedUpDate;
+        }
+
+    }
+
+
+protected void btnOK_Click(object sender, EventArgs e)
+    {
+        var customer = new clsCustomer();
         customer.FullName = textCustomerName.Text;
         customer.Email = textEmail.Text;
         
