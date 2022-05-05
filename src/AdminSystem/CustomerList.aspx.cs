@@ -21,7 +21,7 @@ public partial class _1_List : System.Web.UI.Page
         var customerCollection = new clsCustomerCollection();
         lstCustomerList.DataSource = customerCollection.CustomerList;
         lstCustomerList.DataValueField = "Id";
-        lstCustomerList.DataTextField = "FullName";
+        lstCustomerList.DataTextField = "Email";
         lstCustomerList.DataBind();
     }
 
@@ -57,5 +57,27 @@ public partial class _1_List : System.Web.UI.Page
         {
             lblError.Text = "Please select a record to delete from the list";
         }
+    }
+
+    protected void btnApply_Click(object sender, EventArgs e)
+    {
+        var customerCollection = new clsCustomerCollection();
+        customerCollection.FilterByEmail(textEmail.Text);
+        lstCustomerList.DataSource = customerCollection.CustomerList;
+        lstCustomerList.DataValueField = "Id";
+        lstCustomerList.DataTextField = "Email";
+        lstCustomerList.DataBind();
+    }
+
+
+
+    protected void btnClear_Click(object sender, EventArgs e)
+    {
+        var customerCollection = new clsCustomerCollection();
+        customerCollection.FilterByEmail("");
+        lstCustomerList.DataSource = customerCollection.CustomerList;
+        lstCustomerList.DataValueField = "Id";
+        lstCustomerList.DataTextField = "Email";
+        lstCustomerList.DataBind();
     }
 }

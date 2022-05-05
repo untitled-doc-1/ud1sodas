@@ -46,26 +46,12 @@ namespace ClassLibrary
 
         public clsCustomerCollection()
         {
-            mCustomerList = new List<clsCustomer>();
             mThisCustomer = new clsCustomer();
 
             // never ever put data fetching logic in a constructor
             var db = new clsDataConnection();
             db.Execute("sproc_tblCustomer_SelectAll");
-            var rows = db.Count;
-
-            for (var i = 0; i < rows; i++)
-            {
-                var customer = new clsCustomer();
-                customer.Id = Convert.ToInt32(db.DataTable.Rows[i]["Id"]);
-                customer.AddressLine1 = Convert.ToString(db.DataTable.Rows[i]["AddressLine1"]);
-                customer.Email = Convert.ToString(db.DataTable.Rows[i]["Email"]);
-                customer.PasswordHash = Convert.ToString(db.DataTable.Rows[i]["PasswordHash"]);
-                customer.FullName = Convert.ToString(db.DataTable.Rows[i]["FullName"]);
-                customer.PhoneNumber = Convert.ToString(db.DataTable.Rows[i]["PhoneNumber"]);
-                customer.Disabled = Convert.ToBoolean(db.DataTable.Rows[i]["Disabled"]);
-                mCustomerList.Add(customer);
-            }
+            PopulateArray(db);
         }
 
         public int Add()
@@ -111,6 +97,33 @@ namespace ClassLibrary
             db.AddParameter("@Id", mThisCustomer.Id);
             db.Execute("sproc_tblCustomer_Delete");
             return !ThisCustomer.Find(mThisCustomer.Id);
+        }
+
+        public void FilterByEmail(string emailAddress)
+        {
+            var db = new clsDataConnection();
+            db.AddParameter("@Email", emailAddress);
+            db.Execute("sproc_tblCustomer_FilterByEmail");
+            PopulateArray(db);
+        }
+
+        private void PopulateArray(clsDataConnection db)
+        {
+            mCustomerList = new List<clsCustomer>();
+            var rows = db.Count;
+
+            for (var i = 0; i < rows; i++)
+            {
+                var customer = new clsCustomer();
+                customer.Id = Convert.ToInt32(db.DataTable.Rows[i]["Id"]);
+                customer.AddressLine1 = Convert.ToString(db.DataTable.Rows[i]["AddressLine1"]);
+                customer.Email = Convert.ToString(db.DataTable.Rows[i]["Email"]);
+                customer.PasswordHash = Convert.ToString(db.DataTable.Rows[i]["PasswordHash"]);
+                customer.FullName = Convert.ToString(db.DataTable.Rows[i]["FullName"]);
+                customer.PhoneNumber = Convert.ToString(db.DataTable.Rows[i]["PhoneNumber"]);
+                customer.Disabled = Convert.ToBoolean(db.DataTable.Rows[i]["Disabled"]);
+                mCustomerList.Add(customer);
+            }
         }
     }
 }

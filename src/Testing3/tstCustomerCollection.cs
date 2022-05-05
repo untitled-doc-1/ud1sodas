@@ -179,6 +179,32 @@ namespace tstCustomer
             Assert.IsFalse(found);
         }
 
+        [TestMethod]
+        public void FilterByEmail_EmailLikeExample_FindsRows()
+        {
+            // arrange
+            var customerCollection = new clsCustomerCollection();
+
+            // act
+            customerCollection.FilterByEmail("example");
+
+            // assert
+            Assert.AreNotEqual(0, customerCollection.Count);
+        }
+
+        [TestMethod]
+        public void FilterByEmail_SearchForNonExistingEmail_FindsZeroRows()
+        {
+            // arrange
+            var customerCollection = new clsCustomerCollection();
+
+            // act
+            customerCollection.FilterByEmail("aaaaaaaaaaaaa");
+
+            // assert
+            Assert.AreEqual(0, customerCollection.Count);
+        }
+
         //[TestMethod]
         //public void CustomerCollection_InitializeWithContentFromDatabase_ReturnsThreeCustomers()
         //{
