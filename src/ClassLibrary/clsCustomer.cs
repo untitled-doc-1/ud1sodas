@@ -224,7 +224,7 @@ namespace ClassLibrary
         {
             var db = new clsDataConnection();
             db.AddParameter("@CustomerId", customerId);
-            db.Execute("sproc_Customer_FilterByCustomerId");
+            db.Execute("sproc_tblCustomer_FilterByCustomerId");
 
             if (db.Count == 1)
             {
