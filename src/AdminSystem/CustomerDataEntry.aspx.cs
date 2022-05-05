@@ -8,9 +8,32 @@ using ClassLibrary;
 
 public partial class _1_DataEntry : System.Web.UI.Page
 {
+    private int _customerId;
+
     protected void Page_Load(object sender, EventArgs e)
     {
+        _customerId = Convert.ToInt32(Session["customerId"]);
+        if (!IsPostBack)
+        {
+            if (_customerId != -1)
+            {
+                DisplayCustomer();
+            }
+        }
+    }
 
+    private void DisplayCustomer()
+    {
+        var customerCollection = new clsCustomerCollection();
+
+        customerCollection.ThisCustomer.Find(_customerId);
+        textCustomerName.Text = customerCollection.ThisCustomer.FullName;
+        textEmail.Text = customerCollection.ThisCustomer.Email;
+        textAddressLine1.Text = customerCollection.ThisCustomer.AddressLine1;
+        textPassword.Text = customerCollection.ThisCustomer.PasswordHash;
+        textPhoneNumer.Text = customerCollection.ThisCustomer.PhoneNumber;
+        chkActive.Checked = customerCollection.ThisCustomer.Disabled;
+        Calendar1.SelectedDate = customerCollection.ThisCustomer.SignedUpDate;
     }
 
     protected void CheckBox1_CheckedChanged(object sender, EventArgs e)
@@ -53,7 +76,7 @@ public partial class _1_DataEntry : System.Web.UI.Page
         if (errorMessage == String.Empty)
         {
             var customerCollection = new clsCustomerCollection();
-
+            customer.Id = _customerId;
             customer.AddressLine1 = addressLine1;
             customer.Disabled = disabled;
             customer.Email = customerEmail;
@@ -62,9 +85,17 @@ public partial class _1_DataEntry : System.Web.UI.Page
             customer.PhoneNumber = phoneNumber;
             customer.SignedUpDate = selectedDate;
 
-            customerCollection.ThisCustomer = customer;
-            customerCollection.Add();
-                        
+            if (_customerId == -1)
+            {
+                customerCollection.ThisCustomer = customer;
+                customerCollection.Add();
+            }
+            else
+            {
+                customerCollection.ThisCustomer.Find(_customerId);
+                customerCollection.ThisCustomer = customer;
+                customerCollection.Update();
+            }
             // navigate to list page
             Response.Redirect("CustomerList.aspx");
         }

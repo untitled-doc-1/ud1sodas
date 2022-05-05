@@ -57,6 +57,7 @@ namespace ClassLibrary
             for (var i = 0; i < rows; i++)
             {
                 var customer = new clsCustomer();
+                customer.Id = Convert.ToInt32(db.DataTable.Rows[i]["Id"]);
                 customer.AddressLine1 = Convert.ToString(db.DataTable.Rows[i]["AddressLine1"]);
                 customer.Email = Convert.ToString(db.DataTable.Rows[i]["Email"]);
                 customer.PasswordHash = Convert.ToString(db.DataTable.Rows[i]["PasswordHash"]);
