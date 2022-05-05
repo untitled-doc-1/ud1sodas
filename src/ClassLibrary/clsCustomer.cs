@@ -233,6 +233,7 @@ namespace ClassLibrary
 
             if (db.Count == 1)
             {
+                Id = Convert.ToInt32(db.DataTable.Rows[0]["Id"]);
                 mAddressLine1 = Convert.ToString(db.DataTable.Rows[0]["AddressLine1"]);
                 mEmail = Convert.ToString(db.DataTable.Rows[0]["Email"]);
                 mPasswordHash = Convert.ToString(db.DataTable.Rows[0]["PasswordHash"]);

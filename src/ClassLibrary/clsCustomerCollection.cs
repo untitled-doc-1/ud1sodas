@@ -105,11 +105,12 @@ namespace ClassLibrary
             db.Execute("sproc_tblCustomer_Update");
         }
 
-        public void Delete()
+        public bool Delete()
         {
             var db = new clsDataConnection();
             db.AddParameter("@Id", mThisCustomer.Id);
             db.Execute("sproc_tblCustomer_Delete");
+            return !ThisCustomer.Find(mThisCustomer.Id);
         }
     }
 }
