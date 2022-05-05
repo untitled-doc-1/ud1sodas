@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Globalization;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace ClassLibrary
@@ -18,7 +20,8 @@ namespace ClassLibrary
         private bool mDisabled;
 
         public int Id { get; set; }
-        public string FullName {
+        public string FullName
+        {
             get
             {
                 return mFullName;
@@ -103,8 +106,52 @@ namespace ClassLibrary
             mPhoneNumber = "01110001233";
             mPasswordHash = "AAABBBCCC111222333";
             mDisabled = false;
-            
+
             return true;
+        }
+        // https://docs.microsoft.com/en-us/dotnet/standard/base-types/how-to-verify-that-strings-are-in-valid-email-format
+        private bool IsValidEmail(string email)
+        {
+            if (string.IsNullOrWhiteSpace(email))
+                return false;
+
+            try
+            {
+                // Normalize the domain
+                email = Regex.Replace(email, @"(@)(.+)$", DomainMapper,
+                                      RegexOptions.None, TimeSpan.FromMilliseconds(200));
+
+                // Examines the domain part of the email and normalizes it.
+                string DomainMapper(Match match)
+                {
+                    // Use IdnMapping class to convert Unicode domain names.
+                    var idn = new IdnMapping();
+
+                    // Pull out and process domain name (throws ArgumentException on invalid)
+                    string domainName = idn.GetAscii(match.Groups[2].Value);
+
+                    return match.Groups[1].Value + domainName;
+                }
+            }
+            catch (RegexMatchTimeoutException e)
+            {
+                return false;
+            }
+            catch (ArgumentException e)
+            {
+                return false;
+            }
+
+            try
+            {
+                return Regex.IsMatch(email,
+                    @"^[^@\s]+@[^@\s]+\.[^@\s]+$",
+                    RegexOptions.IgnoreCase, TimeSpan.FromMilliseconds(250));
+            }
+            catch (RegexMatchTimeoutException)
+            {
+                return false;
+            }
         }
 
         public string Validate(string customerName, string customerEmail, string passwordHash, string addressLine1, string phoneNumber, bool disabled, DateTime signedUpDate)
@@ -122,7 +169,7 @@ namespace ClassLibrary
 
             var errorMessages = new Dictionary<string, string>()
             {
-                {"validPhoneNumber", "Phone numbers must be 11 characters long and start with a zero." },
+                {"validPhoneNumber", "Phone numbers must be 11 characters long, start with a zero and cannot contain any spaces." },
                 {"validEmail", "Email is invalid." },
                 {"validName", "Name is empty." },
                 {"validAddress", "Address is empty." },
@@ -132,13 +179,13 @@ namespace ClassLibrary
 
             // UK phone numbers are 11 digits long
             // e.g. 0116 123 4567
-            if (phoneNumber.Length != 11 && !phoneNumber.StartsWith("0"))
+            if (phoneNumber.Contains(" ") || phoneNumber.Length != 11 || !phoneNumber.StartsWith("0"))
             {
                 validationParameters["validPhoneNumber"] = false;
             }
 
             // borrow email validation from built-in attribute
-            validationParameters["validEmail"] = new EmailAddressAttribute().IsValid(customerEmail) && !string.IsNullOrEmpty(customerEmail);
+            validationParameters["validEmail"] = IsValidEmail(customerEmail);
 
             // validate name is not empty
             validationParameters["validName"] = !string.IsNullOrWhiteSpace(customerName);
@@ -150,10 +197,11 @@ namespace ClassLibrary
             validationParameters["validPasswordHash"] = !string.IsNullOrEmpty(passwordHash);
 
             // validate sign up date is not datetime minvalue
+            // there is no need for min/max tests as realistically this would be set by the server and NOT the client.
             validationParameters["validSignedUpDate"] = signedUpDate != DateTime.MinValue;
 
             var errorStringBuilder = new StringBuilder();
-            errorStringBuilder.Append("Error:");
+            errorStringBuilder.AppendLine("Error: ");
             var errorsFound = false;
             foreach (var parameter in validationParameters.Keys)
             {
@@ -177,7 +225,7 @@ namespace ClassLibrary
             var db = new clsDataConnection();
             db.AddParameter("@CustomerId", customerId);
             db.Execute("sproc_Customer_FilterByCustomerId");
-            
+
             if (db.Count == 1)
             {
                 mAddressLine1 = Convert.ToString(db.DataTable.Rows[0]["AddressLine1"]);
