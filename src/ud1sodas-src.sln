@@ -37,7 +37,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "tstCustomer", "Testing3\tst
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "tstStaff", "Testing2\tstStaff.csproj", "{53F17854-E215-4FE3-9860-C1E18BF9C6C7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "tstOrder", "Testing1\tstOrder.csproj", "{4186B3B3-EBEA-434E-844F-F79D774C252B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrderTests", "Testing1\OrderTests.csproj", "{4186B3B3-EBEA-434E-844F-F79D774C252B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
