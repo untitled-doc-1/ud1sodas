@@ -55,6 +55,9 @@ public partial class _1_DataEntry : System.Web.UI.Page
             textPhoneNumer.Text = customer.PhoneNumber;
             chkActive.Checked = customer.Disabled;
             Calendar1.SelectedDate = customer.SignedUpDate;
+        } else
+        {
+            lblError.Text = "Customer not found!";
         }
 
     }
@@ -85,7 +88,7 @@ public partial class _1_DataEntry : System.Web.UI.Page
             customer.PhoneNumber = phoneNumber;
             customer.SignedUpDate = selectedDate;
 
-            if (_customerId == -1)
+            if (_customerId == -1 || _customerId == 0)
             {
                 customerCollection.ThisCustomer = customer;
                 customerCollection.Add();
