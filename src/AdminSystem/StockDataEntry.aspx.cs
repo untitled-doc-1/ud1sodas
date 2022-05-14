@@ -16,13 +16,16 @@ public partial class _1_DataEntry : System.Web.UI.Page
     protected void btnOK_Click(object sender, EventArgs e)
     {
 
-        clsStock AStock = new clsStock();
+        clsStock AStock = new clsStock
+        {
 
 
 
-        //convert stock id integer to text data type
-        AStock.StockID = Convert.ToInt32(txtStockID.Text);
-       
+            //convert stock id integer to text data type
+            StockID = Convert.ToInt32(txtStockID.Text)
+        };
+
+        
 
 
         //store the StockID in the session object
