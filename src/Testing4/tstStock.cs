@@ -7,11 +7,11 @@ namespace Testing4
     [TestClass]
     public class tstStock
     {
-        //private data member for address property
-      
 
 
-        
+
+
+
 
 
 
@@ -56,7 +56,7 @@ namespace Testing4
             clsStock AStock = new clsStock();
 
             //data test
-             DateTime TestData = DateTime.Now.Date;
+            DateTime TestData = DateTime.Now.Date;
 
             //data assignment
             AStock.DateAdded = TestData;
@@ -179,6 +179,110 @@ namespace Testing4
 
 
         }
+
+        [TestMethod]
+
+        public void TestDateArrivedFound()
+        {
+            clsStock AStock = new clsStock();
+
+            Boolean Found = false;
+
+            Boolean OK = true;
+
+            Int32 DateArrived = 21;
+
+            Found = AStock.Find(DateArrived);
+
+            if (AStock.DateArrived != Convert.ToDateTime("16/09/2015"))
+            {
+                OK = false;
+            }
+
+            Assert.IsTrue(OK);
+        }
+
+
+        [TestMethod]
+
+        public void TestDescriptionFound()
+        {
+
+            clsStock AStock = new clsStock();
+
+            Boolean Found = false;
+
+            Boolean OK = true;
+
+            Int32 StockDescription = 21;
+
+            Found = AStock.Find(StockDescription);
+
+            if (AStock.StockDescription != "Test Description")
+            {
+                OK = false;
+            }
+
+        }
+
+
+        [TestMethod]
+
+        public void TestStockAvailabilityFound()
+        {
+
+            clsStock AStock = new clsStock();
+
+            Boolean Found = false;
+
+            Boolean OK = true;
+
+            Int32 StockAvailability = 21;
+
+            Found = AStock.Find(StockAvailability);
+
+            if (AStock.StockAvailability != true)
+            {
+                OK = false;
+            }
+        }
+
+        public void TestStockSupplierFound()
+        {
+
+            clsStock AStock = new clsStock();
+
+            Boolean Found = false;
+
+            Boolean OK = true;
+
+            Int32 StockSupplier = 21;
+
+            Found = AStock.Find(StockSupplier);
+
+            if (AStock.StockAvailability)
+
+
+
+
+
+        }
+
+
+
+
+
+
+
+        }
+
+
+
+
+
+    }
+
+
 
        
 

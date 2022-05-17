@@ -10,22 +10,90 @@ namespace ClassLibrary
         }
 
         public bool Active { get; set; }
-        public DateTime DateAdded { get; set; }
+        private DateTime mDateAdded;
+        public DateTime DateAdded
+        {
+            get
 
-        public DateTime DateArrived { get; set; }
+            {
 
-        public Boolean StockAvailability { get; set; }
+                return mDateAdded;
+            }
+            set
+            {
+                mDateAdded = value;
+            }
+        }
 
-        public string StockDescription { get; set; }
+
+        private DateTime mDateArrived;
+        public DateTime DateArrived
+        {
+            get
+
+            {
+                return mDateArrived;
+            }
+            set
+            {
+                mDateArrived = value;
+            }
+        }       
+
+
+        private Boolean mStockAvailability;
+        public Boolean StockAvailability
+        {
+            get
+
+            {
+                return mStockAvailability;
+            }
+            set
+            {
+                mStockAvailability = value;
+            }
+        }
+
+
+
+
+
+        private string mStockDescription;
+        public string StockDescription
+        {
+            get
+
+            {
+                return mStockDescription;
+            }
+            set
+            {
+                mStockDescription = value;
+            }
+        }
+                
+              
 
         public string StockSupplier { get; set; }
 
-        
 
-        public string SupplierAddress { get; set; }
+        private string mSupplierAddress;
+        public string SupplierAddress 
+        { 
+             get
+            {
+                return mSupplierAddress;
+            }
+            set
+            {
+                mSupplierAddress = value;
+            }
+        }
 
-
+        //data members
         private Int32 mStockID;
+    
 
         public Int32 StockID
         {
@@ -45,7 +113,10 @@ namespace ClassLibrary
         public bool Find(int StockID)
             {
                 mStockID = 21;
-
+                mDateArrived = Convert.ToDateTime("16/9/2015");
+                mStockDescription = ("Test Description");
+                mSupplierAddress = ("Test Address");
+                mStockAvailability = (true);
                 return true;
             }
 
