@@ -1,6 +1,7 @@
 ﻿using System;
 
 namespace ClassLibrary
+
 {
     public class clsStock
     {
@@ -39,6 +40,7 @@ namespace ClassLibrary
                 mDateArrived = value;
             }
         }       
+       
 
 
         private Boolean mStockAvailability;
@@ -126,14 +128,34 @@ namespace ClassLibrary
 
         public bool Find(int StockID)
             {
-                mStockID = 21;
-                mDateArrived = Convert.ToDateTime("16/9/2015");
-                mStockDescription = ("Test Description");
-                mSupplierAddress = ("Test Address");
-                mStockAvailability = (true);
-                mStockSupplier = ("Test StockSupplier");
+
+            clsDataConnection DB = new clsDataConnection();
+            
+            DB.AddParameter("@StockID"), StockID);
+
+            DB.Execute("sproc_StockTable_FilterByStockID");
+
+            if (DB.Count == 1)
+            {
+                mStockID = Convert.ToInt32(DB.DataTable.Rows[0]["StockID"]);
+                mSupplierAddress = Convert.ToString(DB.DataTable.Rows[0]["SupplierAddress"]);
+                mStockSupplier = Convert.ToString(DB.DataTable.Rows[0]["StockSupplier"]);
+                mDateArrived = Convert.ToDateTime(DB.DataTable.Rows[0]["DateArrived"]);
+                mStockAvailability = Convert.ToBoolean(DB.DataTable.Rows[0]["Active"]);
+                mStockDescription = Convert.ToString(DB.DataTable.Rows[0]["StockDescription"]);
+
                 return true;
 
+            }
+
+            else
+            {
+                return false;
+            }    
+
+
+                
+         
             }
 
 

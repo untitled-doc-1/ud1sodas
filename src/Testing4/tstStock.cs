@@ -4,6 +4,7 @@ using System;
 
 namespace Testing4
 {
+
     [TestClass]
     public class tstStock
     {
