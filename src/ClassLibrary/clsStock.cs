@@ -4,6 +4,7 @@ namespace ClassLibrary
 {
     public class clsStock
     {
+        
         public clsStock()
         {
         }
@@ -19,20 +20,37 @@ namespace ClassLibrary
 
         public string StockSupplier { get; set; }
 
-        public int StockID { get; set; }
+        
 
         public string SupplierAddress { get; set; }
 
 
+        private Int32 mStockID;
+
+        public Int32 StockID
+        {
+            get
+            {
+                //sends data out of property
+                return mStockID;
+            }
+            set
+            {
+                //allows data into property
+                mStockID = value;
+            }
+        }
 
 
+        public bool Find(int StockID)
+            {
+                mStockID = 21;
+
+                return true;
+            }
 
 
-
-
-
-
-
-
+        
+        
     }
 }

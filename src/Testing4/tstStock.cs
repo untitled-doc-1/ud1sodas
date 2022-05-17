@@ -7,11 +7,19 @@ namespace Testing4
     [TestClass]
     public class tstStock
     {
+        //private data member for address property
+      
+
+
+        
+
+
+
         [TestMethod]
         public void InstanceOK()
         {
             //creation of class instance
-            var AStock = new clsStock();
+            clsStock AStock = new clsStock();
 
             //existance testing
             Assert.IsNotNull(AStock);
@@ -24,10 +32,11 @@ namespace Testing4
         public void ActivePropertyOK()
         {
             //creation of class instance
-            var AStock = new clsStock();
+            clsStock AStock = new clsStock();
+
 
             //data test
-            var TestData = true;
+            Boolean TestData = true;
 
             //data assignment
             AStock.Active = TestData;
@@ -44,10 +53,10 @@ namespace Testing4
         public void DateArrived()
         {
             //creation of class instance
-            var AStock = new clsStock();
+            clsStock AStock = new clsStock();
 
             //data test
-            var TestData = DateTime.Now.Date;
+             DateTime TestData = DateTime.Now.Date;
 
             //data assignment
             AStock.DateAdded = TestData;
@@ -63,10 +72,11 @@ namespace Testing4
         public void StockAvailability()
         {
             //creation of class instance
-            var AStock = new clsStock();
+            clsStock AStock = new clsStock();
+
 
             //data test
-            var TestData = true;
+            Boolean TestData = true;
 
             AStock.StockAvailability = TestData;
 
@@ -81,10 +91,11 @@ namespace Testing4
         public void StockDescription()
         {
             //creation of class instance
-            var AStock = new clsStock();
+            clsStock AStock = new clsStock();
+
 
             //data test
-            var TestData = "";
+            String TestData = "";
 
             AStock.StockDescription = TestData;
 
@@ -99,9 +110,10 @@ namespace Testing4
         public void StockSupplier()
         {
             //creation of class instance
-            var AStock = new clsStock();
+            clsStock AStock = new clsStock();
 
-            var TestData = "";
+
+            String TestData = "";
 
             AStock.StockSupplier = TestData;
 
@@ -115,9 +127,10 @@ namespace Testing4
         public void StockID()
         {
             //creatiion of class instance
-            var AStock = new clsStock();
+            clsStock AStock = new clsStock();
 
-            var TestData = 1;
+
+            Int32 TestData = 1;
 
             AStock.StockID = TestData;
 
@@ -125,5 +138,57 @@ namespace Testing4
 
 
         }
+
+        [TestMethod]
+
+        public void FindMethodOK()
+        {
+
+            clsStock AStock = new clsStock();
+
+            Boolean Found = false;
+
+            Int32 SupplierAddress = 21;
+
+            Found = AStock.Find(SupplierAddress);
+
+            Assert.IsTrue(Found);
+
+        }
+
+        [TestMethod]
+
+        public void TestAddressNoFound()
+        {
+            clsStock AStock = new clsStock();
+
+            Boolean Found = false;
+
+            Boolean OK = true;
+
+            Int32 SupplierAddress = 21;
+
+            Found = AStock.Find(SupplierAddress);
+
+            if (AStock.StockID != 21)
+            {
+                OK = false;
+            }
+
+            Assert.IsTrue(OK);
+
+
+        }
+
+       
+
+       
+
+
+
+
+
+
+
     }
 }

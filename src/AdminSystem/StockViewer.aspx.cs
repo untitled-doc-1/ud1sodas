@@ -1,10 +1,11 @@
-﻿using ClassLibrary;
+﻿
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using ClassLibrary;
 
 public partial class _1Viewer : System.Web.UI.Page
 {
@@ -16,7 +17,7 @@ public partial class _1Viewer : System.Web.UI.Page
         //new instance of class
         clsStock AStock = new clsStock();
         //get data from session object
-        AStock = (clsStock)Session["StockID"];
+        AStock = (clsStock)Session["AStock"];
         //display stockid for this entry
         Response.Write(AStock.StockID);
 
