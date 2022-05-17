@@ -175,6 +175,7 @@ namespace Testing4
                 OK = false;
             }
 
+
             Assert.IsTrue(OK);
 
 
@@ -223,6 +224,8 @@ namespace Testing4
                 OK = false;
             }
 
+            Assert.IsTrue(OK);
+
         }
 
 
@@ -245,7 +248,14 @@ namespace Testing4
             {
                 OK = false;
             }
+
+            Assert.IsTrue(OK);
+
         }
+
+
+
+        [TestMethod]
 
         public void TestStockSupplierFound()
         {
@@ -260,17 +270,18 @@ namespace Testing4
 
             Found = AStock.Find(StockSupplier);
 
-            if (AStock.StockAvailability)
+            if (AStock.StockSupplier != "Test StockSupplier")
+            {
+                OK = false;
+            }
 
-
-
-
+            Assert.IsTrue(OK);
 
         }
 
+        
 
-
-
+   
 
 
 
@@ -294,5 +305,4 @@ namespace Testing4
 
 
 
-    }
-}
+    

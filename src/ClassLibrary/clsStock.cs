@@ -72,11 +72,25 @@ namespace ClassLibrary
                 mStockDescription = value;
             }
         }
-                
-              
 
-        public string StockSupplier { get; set; }
 
+        private string mStockSupplier;
+        public string StockSupplier
+        {
+            get
+            {
+
+                return mStockSupplier;
+
+            }
+
+            set
+
+            {
+                mStockSupplier = value;
+
+            }
+        }
 
         private string mSupplierAddress;
         public string SupplierAddress 
@@ -117,7 +131,9 @@ namespace ClassLibrary
                 mStockDescription = ("Test Description");
                 mSupplierAddress = ("Test Address");
                 mStockAvailability = (true);
+                mStockSupplier = ("Test StockSupplier");
                 return true;
+
             }
 
 
