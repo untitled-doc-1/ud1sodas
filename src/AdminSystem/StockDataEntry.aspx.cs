@@ -43,4 +43,39 @@ public partial class _1_DataEntry : System.Web.UI.Page
 
 
 
+
+    protected void btnFind_Click(object sender, EventArgs e)
+    {
+
+        clsStock AStock = new clsStock();
+
+        Int32 StockID;
+
+        Boolean Found = false;
+
+        StockID = Convert.ToInt32(txtStockID.Text);
+
+        Found = AStock.Find(StockID);
+
+        if (Found == true)
+        {
+
+            txtDateArrived.Text = AStock.DateArrived.ToString();
+            txtSupplierAddress.Text = AStock.SupplierAddress;
+            txtStockSupplier.Text = AStock.StockSupplier;
+            txtStockDescription.Text = AStock.StockDescription;
+            StockAvailability.Text = AStock.StockAvailability.ToString();
+
+
+
+        }
+
+
+
+
+
+
+
+
+    }
 }

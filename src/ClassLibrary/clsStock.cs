@@ -131,18 +131,21 @@ namespace ClassLibrary
 
             clsDataConnection DB = new clsDataConnection();
             
-            DB.AddParameter("@StockID"), StockID);
+            DB.AddParameter("@StockID", StockID);
 
-            DB.Execute("sproc_StockTable_FilterByStockID");
+            DB.Execute("sproc_tblStockTable_FilterByStockID");
 
             if (DB.Count == 1)
             {
                 mStockID = Convert.ToInt32(DB.DataTable.Rows[0]["StockID"]);
-                mSupplierAddress = Convert.ToString(DB.DataTable.Rows[0]["SupplierAddress"]);
-                mStockSupplier = Convert.ToString(DB.DataTable.Rows[0]["StockSupplier"]);
+                mStockAvailability = Convert.ToBoolean(DB.DataTable.Rows[0]["StockAvailability"]);
                 mDateArrived = Convert.ToDateTime(DB.DataTable.Rows[0]["DateArrived"]);
-                mStockAvailability = Convert.ToBoolean(DB.DataTable.Rows[0]["Active"]);
                 mStockDescription = Convert.ToString(DB.DataTable.Rows[0]["StockDescription"]);
+                mStockSupplier = Convert.ToString(DB.DataTable.Rows[0]["StockSupplier"]);
+                mSupplierAddress = Convert.ToString(DB.DataTable.Rows[0]["SupplierAddress"]);
+                
+                
+                
 
                 return true;
 

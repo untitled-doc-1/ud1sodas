@@ -149,9 +149,9 @@ namespace Testing4
 
             Boolean Found = false;
 
-            Int32 SupplierAddress = 21;
+            Int32 StockID = 1;
 
-            Found = AStock.Find(SupplierAddress);
+            Found = AStock.Find(StockID);
 
             Assert.IsTrue(Found);
 
@@ -159,7 +159,7 @@ namespace Testing4
 
         [TestMethod]
 
-        public void TestAddressNoFound()
+        public void TestStockNoFound()
         {
             clsStock AStock = new clsStock();
 
@@ -167,11 +167,11 @@ namespace Testing4
 
             Boolean OK = true;
 
-            Int32 SupplierAddress = 21;
+            Int32 StockID = 1;
 
-            Found = AStock.Find(SupplierAddress);
+            Found = AStock.Find(StockID);
 
-            if (AStock.StockID != 21)
+            if (AStock.StockID != 1)
             {
                 OK = false;
             }
@@ -192,9 +192,9 @@ namespace Testing4
 
             Boolean OK = true;
 
-            Int32 DateArrived = 21;
+            Int32 StockID = 1;
 
-            Found = AStock.Find(DateArrived);
+            Found = AStock.Find(StockID);
 
             if (AStock.DateArrived != Convert.ToDateTime("16/09/2015"))
             {
@@ -216,11 +216,11 @@ namespace Testing4
 
             Boolean OK = true;
 
-            Int32 StockDescription = 21;
+            Int32 StockID = 1;
 
-            Found = AStock.Find(StockDescription);
+            Found = AStock.Find(StockID);
 
-            if (AStock.StockDescription != "Test Description")
+            if (AStock.StockDescription != "TestDescription")
             {
                 OK = false;
             }
@@ -241,9 +241,9 @@ namespace Testing4
 
             Boolean OK = true;
 
-            Int32 StockAvailability = 21;
+            Int32 StockID = 1;
 
-            Found = AStock.Find(StockAvailability);
+            Found = AStock.Find(StockID);
 
             if (AStock.StockAvailability != true)
             {
@@ -267,11 +267,11 @@ namespace Testing4
 
             Boolean OK = true;
 
-            Int32 StockSupplier = 21;
+            Int32 StockID = 1;
 
-            Found = AStock.Find(StockSupplier);
+            Found = AStock.Find(StockID);
 
-            if (AStock.StockSupplier != "Test StockSupplier")
+            if (AStock.StockSupplier != "TestStockSupplier")
             {
                 OK = false;
             }

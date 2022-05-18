@@ -24,6 +24,7 @@
         <asp:CheckBox ID="ChkStockAvailability" runat="server" Text="Available" />
         <asp:Label ID="DateArrived" runat="server" Text="Date Arrived" width="145px"></asp:Label>
         <asp:TextBox ID="txtDateArrived" runat="server" Width="152px"></asp:TextBox>
+        <asp:Button ID="btnFind" runat="server" OnClick="btnFind_Click" Text="Find" />
         <asp:Label ID="StockDescription" runat="server" Text="Stock Description" width="145px"></asp:Label>
         <asp:TextBox ID="txtStockDescription" runat="server" style="margin-bottom: 5px"></asp:TextBox>
         <asp:Label ID="SupplierAddress" runat="server" Text="Supplier Address" width="145px"></asp:Label>
