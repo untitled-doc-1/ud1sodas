@@ -9,7 +9,11 @@ namespace Testing4
     public class tstStock
     {
 
-
+        //good test data
+        string StockDescription = "TestDescription";
+        string StockSupplier = "TestStockSupplier";
+        string DateArrived = DateTime.Now.Date.ToString();
+        string SupplierAddress = "21";
 
 
 
@@ -51,7 +55,7 @@ namespace Testing4
 
         [TestMethod]
 
-        public void DateArrived()
+        public void StockDateArrived()
         {
             //creation of class instance
             clsStock AStock = new clsStock();
@@ -89,7 +93,7 @@ namespace Testing4
 
         [TestMethod]
 
-        public void StockDescription()
+        public void AStockDescription()
         {
             //creation of class instance
             clsStock AStock = new clsStock();
@@ -108,7 +112,7 @@ namespace Testing4
 
         [TestMethod]
 
-        public void StockSupplier()
+        public void AStockSupplier()
         {
             //creation of class instance
             clsStock AStock = new clsStock();
@@ -280,7 +284,31 @@ namespace Testing4
 
         }
 
-        
+        [TestMethod]
+
+        public void ValidMethodOK()
+        {
+
+            clsStock AStock = new clsStock();
+
+            String Error = "";
+
+            Error = AStock.Valid(SupplierAddress, StockDescription, StockSupplier, DateArrived);
+
+            Assert.AreEqual(Error, "");
+
+
+        }
+
+
+
+
+
+
+
+
+
+
 
    
 

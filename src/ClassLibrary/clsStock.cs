@@ -10,6 +10,15 @@ namespace ClassLibrary
         {
         }
 
+
+
+      
+
+
+
+
+
+
         public bool Active { get; set; }
         private DateTime mDateAdded;
         public DateTime DateAdded
@@ -161,8 +170,9 @@ namespace ClassLibrary
          
             }
 
-
-        
-        
+        public string Valid(string supplierAddress, string stockDescription, string stockSupplier, string dateArrived)
+        {
+            return "";
+        }
     }
 }

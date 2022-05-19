@@ -30,7 +30,7 @@ public partial class _1_DataEntry : System.Web.UI.Page
 
         //store the StockID in the session object
 
-        Session["StockID"] = StockID;
+        Session["AStock"] = AStock;
 
         //navigate to the viewer page
         Response.Redirect("StockViewer.aspx");
@@ -76,6 +76,11 @@ public partial class _1_DataEntry : System.Web.UI.Page
 
 
 
+
+    }
+
+    protected void txtStockID_TextChanged(object sender, EventArgs e)
+    {
 
     }
 }
