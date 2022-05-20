@@ -203,18 +203,18 @@ namespace ClassLibrary
             {
 
                 DateTemp = Convert.ToDateTime(DateArrived);
-
+                
                 if (DateTemp < DateTime.Now.Date)
                 {
 
-                    Error = Error + "The date cannot be in the past : ";
+                    Error = Error + " The date cannot be in the past : ";
 
                 }
 
                 if (DateTemp > DateTime.Now.Date)
                 {
 
-                    Error = Error + "The date cannot be in the future : ";
+                    Error = Error + " The date cannot be in the future : ";
 
                 }
             }

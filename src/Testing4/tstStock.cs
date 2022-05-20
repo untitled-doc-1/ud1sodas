@@ -19,7 +19,6 @@ namespace Testing4
 
 
 
-
         [TestMethod]
         public void InstanceOK()
         {
@@ -200,7 +199,7 @@ namespace Testing4
 
             Found = AStock.Find(StockID);
 
-            if (AStock.DateArrived != Convert.ToDateTime("16/09/2015"))
+            if (AStock.DateArrived != Convert.ToDateTime("20/05/2022"))
             {
                 OK = false;
             }
@@ -626,7 +625,7 @@ namespace Testing4
 
             Error = AStock.Valid(SupplierAddress, StockDescription, StockSupplier, DateArrived);
 
-            Assert.AreEqual(Error, "");
+            Assert.AreNotEqual(Error, "");
 
         }
 
