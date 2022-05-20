@@ -172,7 +172,84 @@ namespace ClassLibrary
 
         public string Valid(string supplierAddress, string stockDescription, string stockSupplier, string dateArrived)
         {
-            return "";
+
+
+            string Error = "";
+
+            DateTime DateTemp;
+
+            //if address left blank
+            if (supplierAddress.Length == 0)
+            {
+
+                Error = Error + "The address may not be blank : ";
+
+
+            } 
+                
+            //address greateer than 6 char
+            if (supplierAddress.Length > 50)
+            {
+
+                Error = Error + "The address must be less than 50 characters : ";
+
+
+            }
+
+            //copy dateadded value to DateTemp variable
+
+
+            try
+            {
+
+                DateTemp = Convert.ToDateTime(DateArrived);
+
+                if (DateTemp < DateTime.Now.Date)
+                {
+
+                    Error = Error + "The date cannot be in the past : ";
+
+                }
+
+                if (DateTemp > DateTime.Now.Date)
+                {
+
+                    Error = Error + "The date cannot be in the future : ";
+
+                }
+            }
+
+            catch
+            {
+                Error = Error + "The date was not a valid date : ";
+            }
+
+            if (stockSupplier.Length == 0)
+            {
+
+                Error = Error + "The supplier may not be blank : ";
+
+            }
+
+            if (stockSupplier.Length > 50)
+            {
+
+                Error = Error + "The supplier must be less than 50 characters : ";
+
+            }    
+
+
+            return Error;
+        
+
         }
     }
+
+
+
+
+
+
+
+
 }
